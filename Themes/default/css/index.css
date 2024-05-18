@@ -1,15 +1,19 @@
-/* You can find detailed information at https://wiki.simplemachines.org/smf/Curve2_CSS
-/* Index */
-html {
-	background: #3e5a78;
-	scroll-padding-top: 3rem;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+	--primary-color: #006d5b;
+	--secondary-color: #222222;
 }
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' var(--secondary-color),
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
 body {
-	background: #e9eef2;
-	font: 83.33%/150% "Segoe UI", "Helvetica Neue", "Nimbus Sans L", Arial, "Liberation Sans", sans-serif;
-	color: #4d4d4d;
-	display: flex;
-	flex-direction: column;
+	color: var(--secondary-color);
 	min-height: 100vh;
 }
 ::selection {
@@ -17,11 +21,14 @@ body {
 	background: #99d4ff;
 	color: rgba(0, 0, 0, 0.6);
 }
-/* General reset */
 * {
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+a {
+	text-decoration: none;
 }
 ul, ol {
 	list-style: none;
@@ -38,7 +45,6 @@ abbr {
 }
 input, button, select, textarea {
 	color: #222;
-	font: 83.33%/150% "Segoe UI", "Helvetica Neue", "Nimbus Sans L", Arial, "Liberation Sans", sans-serif;
 	background: #fff;
 	outline: none;
 	border: 1px solid #bbb;
@@ -84,18 +90,11 @@ img, input, select, textarea {
 	max-width: 100%;
 }
 /* This is a specific issue on Ubuntu - Chrome */
-#chrome input {
-	font-family: "Segoe UI", "Helvetica Neue", Arial, "Liberation Sans", sans-serif;
-}
-/* The following is necessary */
 textarea {
 	font-size: 1em;
 }
 
 /* Use a consistent monospace font everywhere */
-.monospace, .bbc_code, .phpcode, pre {
-	font-family: "DejaVu Sans Mono", Menlo, Monaco, Consolas, monospace;
-}
 
 .sceditor-container textarea, .sceditor-container textarea:focus {
 	box-shadow: none;
@@ -192,16 +191,6 @@ hr {
 	background: #fff;
 	box-shadow: 0 1px 0 #bbb inset;
 }
-/* This is about links */
-a, a:visited {
-	color: #346;
-	text-decoration: none;
-}
-a:hover {
-	text-decoration: underline;
-	cursor: pointer;
-}
-
 /* Help popups require a different styling of the body element. */
 /* Deprecated? */
 body#help_popup {
@@ -528,7 +517,6 @@ strong[id^='child_list_']::after {
 .current_page {
 	padding: 0 4px 0 2px;
 	color: #b46100;
-	font-family: verdana, sans-serif;
 	font-weight: bold;
 }
 .current_page::before, .codeoperation::before {
@@ -714,17 +702,6 @@ img.sort, .sort {
 .dropmenu, #top_info {
 	position: relative;
 }
-/* Level 1 button background. */
-.dropmenu > li, #top_info > li {
-	display: inline-block;
-	margin: 0 2px 0 1px;
-	font-size: 0.9em;
-	line-height: 1.9em;
-}
-/* Disable default focus outlines */
-.dropmenu a {
-	outline: 0;
-}
 /* For cases where we want to spotlight something specific to an item, e.g. an amount */
 .amt {
 	margin-left: 3px;
@@ -743,13 +720,6 @@ img.sort, .sort {
 /* Needed for new PM notifications. */
 .dropmenu li strong {
 	color: #333;
-}
-
-.dropmenu li a, #top_info > li > a {
-	padding: 0 7px 0 7px;
-	display: block;
-	border: 1px solid transparent;
-	border-radius: 4px;
 }
 /* Level 1 active button. */
 .dropmenu a.active, #top_info a.active {
@@ -1035,7 +1005,7 @@ html[lang="el-GR"] .inline_mod_check {
 }
 /* the active one */
 .button.active {
-	background: #557ea0;
+	background: var(--secondary-color);
 	color: #fff;
 	font-weight: bold;
 	border: 1px solid #558080;
@@ -1043,7 +1013,7 @@ html[lang="el-GR"] .inline_mod_check {
 }
 .button.active:hover, .button.active:focus {
 	color: #ffc187;
-	background: #557ea0;
+	background: var(--secondary-color);
 	box-shadow: none;
 }
 .cat_bar .button {
@@ -1145,7 +1115,6 @@ html[lang="el-GR"] .inline_mod_check {
 /* The main title. */
 h1.forumtitle {
 	font-size: 1.8em;
-	font-family: "Tahoma", sans-serif;
 	padding: 22px 12px 6px 10px;
 	font-weight: normal;
 	flex: 1 1 auto;
@@ -1312,7 +1281,6 @@ ul li.greeting {
 }
 #footer li.copyright {
 	display: block;
-	font-family: Verdana, sans-serif; /* Copyright must be Verdana! */
 }
 #footerfix {
 	flex: 1 0 auto;
@@ -3655,7 +3623,6 @@ ul.post_options li {
 
 /* File error */
 .errorfile_table {
-	font-family: monospace;
 	border-spacing: 1px;
 }
 .errorfile_table td {
@@ -3674,7 +3641,7 @@ ul.post_options li {
 /* General Classes */
 /* Cat_bar / catbg */
 div.cat_bar {
-	background: #557ea0;
+	background: var(--secondary-color);
 	border-bottom: 1px solid #777;
 	padding: 0;
 	border-radius: 6px 6px 0 0;
@@ -3703,7 +3670,6 @@ div.cat_bar {
 h3.catbg {
 	overflow: hidden;
 	font-size: 1.1em;
-	font-family: "Tahoma", sans-serif;
 }
 h3.catbg, h3.catbg a, h3.catbg a:hover {
 	color: #fff;
@@ -3753,7 +3719,6 @@ h3.catbg .main_icons::before, h3.catbg .icon {
 h3.titlebg, h4.titlebg, .titlebg, h3.subbg, h4.subbg, .subbg {
 	background: none;
 	color: #555;
-	font-family: "Tahoma", sans-serif;
 	font-weight: bold;
 	overflow: hidden;
 	padding: 6px 12px 5px 12px;
@@ -4213,4 +4178,62 @@ img.theme_thumbnail {
 
 #lang_main_files_list .name, #member_list .email, #approve_list .email {
 	word-break: break-word;
+}
+
+
+
+
+
+/* My styling */
+.flex {
+	display: flex;
+}
+
+.items-center {
+	align-items: center;
+}
+
+.justify-center {
+	justify-content: center;
+}
+
+.justify-between {
+	justify-content: space-between;
+}
+
+.btn_primary {
+	color: white;
+	font-size: 16px;
+	background-color: var(--secondary-color);
+	padding: .5rem 1rem;
+	display: block;
+	text-decoration: none;
+	text-align: center;
+	transition: .5s ease-in-out;
+	border-radius: 8px;
+}
+
+.btn_primary:hover {
+	background-color: var(--primary-color);
+}
+
+.btn_secondary {
+	color: var(--secondary-color);
+	font-size: 16px;
+	display: block;
+	text-decoration: none;
+	text-align: center;
+	transition: .5s ease-in-out;
+}
+
+.btn_secondary:hover {
+	color: var(--primary-color);
+	text-decoration: underline;
+}
+
+nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem 0;
 }

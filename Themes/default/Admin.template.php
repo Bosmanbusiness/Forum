@@ -163,7 +163,7 @@ function template_credits()
 							</h3>
 						</div>
 						<div class="padding">
-							<img src="', $settings['images_url'], '/smflogo.svg" class="floatright" alt="">
+							<img src="', $settings['images_url'], '/logo.svg" class="floatright" alt="">
 							<strong>', $txt['support_versions'], ':</strong><br>
 								', $txt['support_versions_forum'], ':
 							<em id="yourVersion">', $context['forum_version'], '</em>', $context['can_admin'] ? ' <a href="' . $scripturl . '?action=admin;area=maintain;sa=routine;activity=version">' . $txt['version_check_more'] . '</a>' : '', '<br>

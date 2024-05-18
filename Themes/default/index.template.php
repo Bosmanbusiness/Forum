@@ -87,7 +87,8 @@ function template_html_above()
 	echo '<!DOCTYPE html>
 <html', $context['right_to_left'] ? ' dir="rtl"' : '', !empty($txt['lang_locale']) ? ' lang="' . str_replace("_", "-", substr($txt['lang_locale'], 0, strcspn($txt['lang_locale'], "."))) . '"' : '', '>
 <head>
-	<meta charset="', $context['character_set'], '">';
+	<meta charset="', $context['character_set'], '">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />';
 
 	/*
 		You don't need to manually load index.css, this will be set up for you.
@@ -268,28 +269,27 @@ function template_body_above()
 		else
 		{
 			echo '
-			<ul class="floatleft" id="top_info">
-				<li class="welcome">
-					', sprintf($txt['welcome_to_forum'], $context['forum_name_html_safe']), '
-				</li>
-				<li class="button_login">
-					<a href="', $scripturl, '?action=login" class="', $context['current_action'] == 'login' ? 'active' : 'open','" onclick="return reqOverlayDiv(this.href, ' . JavaScriptEscape($txt['login']) . ', \'login\');">
-						<span class="main_icons login"></span>
-						<span class="textmenu">', $txt['login'], '</span>
+			<nav class="flex items-center justify-between">
+				<a id="top" href="', $scripturl, '" title="', $context['forum_name_html_safe'], '"/>
+					<img src="' . $settings['images_url'] . '/logo.svg" width="100%" alt="Forum Logo" />
+				</a>
+				<div class="flex items-center" style="gap: 16px">
+				
+					<a href="', $scripturl, '?action=login" class="btn_secondary flex">
+						<span class="material-symbols-outlined">
+							search
+						</span>
+						', $txt['Search'], '
 					</a>
-				</li>';
 
-			if ($context['can_register'])
-				echo '
-				<li class="button_signup">
-					<a href="', $scripturl, '?action=signup" class="', $context['current_action'] == 'signup' ? 'active' : 'open','">
-						<span class="main_icons regcenter"></span>
-						<span class="textmenu">', $txt['register'], '</span>
+					<a href="', $scripturl, '?action=login" class="btn_secondary" onclick="return reqOverlayDiv(this.href, ' . JavaScriptEscape($txt['login']) . ', \'login\');">', $txt['login'], '</a>
+
+					<a href="', $scripturl, '?action=signup" class="btn_primary">
+					', $txt['register'], '
 					</a>
-				</li>';
 
-			echo '
-			</ul>';
+				</div>
+			</nav>';
 		}
 	}
 	else
@@ -370,14 +370,7 @@ function template_body_above()
 
 	echo '
 	<div id="header">
-		<h1 class="forumtitle">
-			<a id="top" href="', $scripturl, '">', empty($context['header_logo_url_html_safe']) ? $context['forum_name_html_safe'] : '<img src="' . $context['header_logo_url_html_safe'] . '" alt="' . $context['forum_name_html_safe'] . '">', '</a>
-		</h1>';
 
-	echo '
-		', empty($settings['site_slogan']) ? '<img id="smflogo" src="' . $settings['images_url'] . '/smflogo.svg" alt="Simple Machines Forum" title="Simple Machines Forum">' : '<div id="siteslogan">' . $settings['site_slogan'] . '</div>', '';
-
-	echo '
 	</div>
 	<div id="wrapper">
 		<div id="upper_section">
