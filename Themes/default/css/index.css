@@ -4,13 +4,6 @@
 	--primary-color: #006d5b;
 	--secondary-color: #222222;
 }
-.material-symbols-outlined {
-  font-variation-settings:
-  'FILL' var(--secondary-color),
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
-}
 
 body {
 	color: var(--secondary-color);
@@ -29,6 +22,7 @@ body {
 }
 a {
 	text-decoration: none;
+	cursor: pointer;
 }
 ul, ol {
 	list-style: none;
@@ -491,7 +485,6 @@ a img {
 }
 .pagesection .pagelinks {
 	display: inline-block;
-	float: left;
 }
 .pages::after, .jump_to::after, .code::after,
 strong[id^='child_list_']::after {
@@ -733,7 +726,6 @@ img.sort, .sort {
 .dropmenu > li:hover > a, .dropmenu > li > a:focus,
 #top_info > li:hover > a, #top_info > li > a:focus, #top_info > li > a.open {
 	background: #597b9f;
-	border: 1px solid #4a6b8c;
 	color: #fff;
 	cursor: pointer;
 	text-decoration: none;
@@ -752,10 +744,6 @@ img.sort, .sort {
 a.mobile_user_menu,
 a[class^="mobile_generic_menu_"] {
 	display: none;
-}
-
-#main_menu {
-	margin: 0 0 4px 0;
 }
 
 /* User information. */
@@ -1062,7 +1050,6 @@ html[lang="el-GR"] .inline_mod_check {
 /* The top bar. */
 #top_section {
 	border-bottom: 1px solid #bbb;
-	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16);
 	background: #fff;
 	clear: both;
 }
@@ -1156,7 +1143,6 @@ img#smflogo {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	border-bottom: 1px solid #bbb;
 	margin-bottom: 12px;
 }
 .user {
@@ -2767,7 +2753,6 @@ dl.addrules dt.floatleft {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(40, 64, 80, 0.5);
 	z-index: 6;
 }
 #genericmenu > .popup_container {
@@ -2782,32 +2767,13 @@ dl.addrules dt.floatleft {
 #adm_submenus .popup_window {
 	position: relative;
 	width: auto;
-	z-index: 99;
-	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
-	border: 1px solid #777;
-	border-radius: 7px 7px 3px 3px;
+	z-index: 99999;
 	margin: 0 auto;
-	padding: 0;
+	padding: 24px;
 }
 .popup_window {
 	top: 15%;
-	width: 480px;
-	padding: 0 6px 6px 6px;
-}
-.popup_heading {
-	padding: 10px 8px;
-	color: #bf6900;
-}
-.popup_content {
-	color: #222;
-	line-height: 1.6em;
-	max-height: 30em;
-	overflow: auto;
-	padding: 10px 8px;
-	border: 1px solid #bbb;
-	border-bottom: 1px solid #ddd;
-	border-radius: 6px 6px 2px 2px;
-	box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(255, 255, 255, 0.2);
+	width: 50%;
 }
 #main_menu .popup_heading,
 #genericmenu .popup_heading,
@@ -3897,7 +3863,6 @@ h3.profile_hd::before,
 .inline_mod_check, .popup_window, #inner_section, .post_options ul,
 .post_options ul a:hover, .post_options ul a:focus, .notify_dropdown a:hover, .notify_dropdown a:focus {
 	background: #fff; /* fallback for some browsers */
-	background-image: linear-gradient(#e2e9f3 0%, #fff 70%);
 }
 /* Well some of them has different gradient effect on hover */
 .button:hover, #search_form .button:hover, .quickbuttons li:hover {
@@ -4201,6 +4166,10 @@ img.theme_thumbnail {
 	justify-content: space-between;
 }
 
+.justify-end {
+	justify-content: flex-end;
+}
+
 .btn_primary {
 	color: white;
 	font-size: 16px;
@@ -4220,20 +4189,35 @@ img.theme_thumbnail {
 .btn_secondary {
 	color: var(--secondary-color);
 	font-size: 16px;
-	display: block;
+	/* display: block; */
 	text-decoration: none;
 	text-align: center;
 	transition: .5s ease-in-out;
+	border-bottom: 1px solid transparent;
 }
 
 .btn_secondary:hover {
 	color: var(--primary-color);
-	text-decoration: underline;
+	border-bottom: 1px solid var(--primary-color);
 }
 
 nav {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1rem 0;
+	padding: 1rem;
+}
+
+.nav_mobile {
+	height: 100%;
+	overflow-x: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+.nav_dropdown {
+	display: flex !important;
+	justify-content: flex-end !important;
+	border-bottom: 1px solid var(--secondary-color);
+	margin-bottom: 12px;
 }

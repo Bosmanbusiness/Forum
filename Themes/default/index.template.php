@@ -87,8 +87,7 @@ function template_html_above()
 	echo '<!DOCTYPE html>
 <html', $context['right_to_left'] ? ' dir="rtl"' : '', !empty($txt['lang_locale']) ? ' lang="' . str_replace("_", "-", substr($txt['lang_locale'], 0, strcspn($txt['lang_locale'], "."))) . '"' : '', '>
 <head>
-	<meta charset="', $context['character_set'], '">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />';
+	<meta charset="', $context['character_set'], '">';
 
 	/*
 		You don't need to manually load index.css, this will be set up for you.
@@ -269,27 +268,43 @@ function template_body_above()
 		else
 		{
 			echo '
-			<nav class="flex items-center justify-between">
+			<nav>
 				<a id="top" href="', $scripturl, '" title="', $context['forum_name_html_safe'], '"/>
 					<img src="' . $settings['images_url'] . '/logo.svg" width="100%" alt="Forum Logo" />
 				</a>
-				<div class="flex items-center" style="gap: 16px">
+				<div>
+
+					<a class="mobile_user_menu">
+						<img src="' . $settings['images_url'] . '/icons/hamburger.svg" alt="Menu Icon" />
+					</a>
+					<div id="main_menu">
+						<div id="mobile_user_menu" class="popup_container ">
+							<div class="popup_window nav_mobile">
+								<div class="nav_dropdown popup_heading">
+									<a href="javascript:void(0);" class="hide_popup">
+										<img src="' . $settings['images_url'] . '/icons/cancel.svg" width="36px" />
+									</a>
+								</div>
+
+								<div class="flex items-center" style="gap: 16px">
+									<a href="', $scripturl, '?action=search" class="btn_secondary flex items-center" style="gap: 8px;">
+										<img src="' . $settings['images_url'] . '/icons/search.svg" alt="Search Icon" />
+										', $txt['search'], '
+									</a>
 				
-					<a href="', $scripturl, '?action=login" class="btn_secondary flex">
-						<span class="material-symbols-outlined">
-							search
-						</span>
-						', $txt['Search'], '
-					</a>
-
-					<a href="', $scripturl, '?action=login" class="btn_secondary" onclick="return reqOverlayDiv(this.href, ' . JavaScriptEscape($txt['login']) . ', \'login\');">', $txt['login'], '</a>
-
-					<a href="', $scripturl, '?action=signup" class="btn_primary">
-					', $txt['register'], '
-					</a>
-
+									<a href="', $scripturl, '?action=login" class="btn_secondary" onclick="return reqOverlayDiv(this.href, ' . JavaScriptEscape($txt['login']) . ', \'login\');">', $txt['login'], '</a>
+				
+									<a href="', $scripturl, '?action=signup" class="btn_primary">
+									', $txt['register'], '
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				
 				</div>
 			</nav>';
+			theme_linktree();
 		}
 	}
 	else
@@ -314,53 +329,6 @@ function template_body_above()
 				<noscript>
 					<input type="submit" value="', $txt['quick_mod_go'], '">
 				</noscript>
-			</form>';
-	}
-
-	if ($context['allow_search'])
-	{
-		echo '
-			<form id="search_form" class="floatright" action="', $scripturl, '?action=search2" method="post" accept-charset="', $context['character_set'], '">
-				<input type="search" name="search" value="">&nbsp;';
-
-		// Using the quick search dropdown?
-		$selected = !empty($context['current_topic']) ? 'current_topic' : (!empty($context['current_board']) ? 'current_board' : 'all');
-
-		echo '
-				<select name="search_selection">
-					<option value="all"', ($selected == 'all' ? ' selected' : ''), '>', $txt['search_entireforum'], ' </option>';
-
-		// Can't limit it to a specific topic if we are not in one
-		if (!empty($context['current_topic']))
-			echo '
-					<option value="topic"', ($selected == 'current_topic' ? ' selected' : ''), '>', $txt['search_thistopic'], '</option>';
-
-		// Can't limit it to a specific board if we are not in one
-		if (!empty($context['current_board']))
-			echo '
-					<option value="board"', ($selected == 'current_board' ? ' selected' : ''), '>', $txt['search_thisboard'], '</option>';
-
-		// Can't search for members if we can't see the memberlist
-		if (!empty($context['allow_memberlist']))
-			echo '
-					<option value="members"', ($selected == 'members' ? ' selected' : ''), '>', $txt['search_members'], ' </option>';
-
-		echo '
-				</select>';
-
-		// Search within current topic?
-		if (!empty($context['current_topic']))
-			echo '
-				<input type="hidden" name="sd_topic" value="', $context['current_topic'], '">';
-
-		// If we're on a certain board, limit it to this board ;).
-		elseif (!empty($context['current_board']))
-			echo '
-				<input type="hidden" name="sd_brd" value="', $context['current_board'], '">';
-
-		echo '
-				<input type="submit" name="search2" value="', $txt['search'], '" class="button">
-				<input type="hidden" name="advanced" value="0">
 			</form>';
 	}
 
@@ -403,26 +371,6 @@ function template_body_above()
 
 	echo '
 				</div>';
-
-	// Show the menu here, according to the menu sub template, followed by the navigation tree.
-	// Load mobile menu here
-	echo '
-				<a class="mobile_user_menu">
-					<span class="menu_icon"></span>
-					<span class="text_menu">', $txt['mobile_user_menu'], '</span>
-				</a>
-				<div id="main_menu">
-					<div id="mobile_user_menu" class="popup_container">
-						<div class="popup_window description">
-							<div class="popup_heading">', $txt['mobile_user_menu'], '
-								<a href="javascript:void(0);" class="main_icons hide_popup"></a>
-							</div>
-							', template_menu(), '
-						</div>
-					</div>
-				</div>';
-
-	theme_linktree();
 
 	echo '
 			</div><!-- #inner_section -->
@@ -548,60 +496,9 @@ function template_menu()
 	global $context;
 
 	echo '
-					<ul class="dropmenu menu_nav">';
+		<div class="dropmenu menu_nav">
 
-	// Note: Menu markup has been cleaned up to remove unnecessary spans and classes.
-	foreach ($context['menu_buttons'] as $act => $button)
-	{
-		echo '
-						<li class="button_', $act, '', !empty($button['sub_buttons']) ? ' subsections"' : '"', '>
-							<a', $button['active_button'] ? ' class="active"' : '', ' href="', $button['href'], '"', isset($button['target']) ? ' target="' . $button['target'] . '"' : '', isset($button['onclick']) ? ' onclick="' . $button['onclick'] . '"' : '', '>
-								', $button['icon'], '<span class="textmenu">', $button['title'], !empty($button['amt']) ? ' <span class="amt">' . $button['amt'] . '</span>' : '', '</span>
-							</a>';
-
-		// 2nd level menus
-		if (!empty($button['sub_buttons']))
-		{
-			echo '
-							<ul>';
-
-			foreach ($button['sub_buttons'] as $childbutton)
-			{
-				echo '
-								<li', !empty($childbutton['sub_buttons']) ? ' class="subsections"' : '', '>
-									<a href="', $childbutton['href'], '"', isset($childbutton['target']) ? ' target="' . $childbutton['target'] . '"' : '', isset($childbutton['onclick']) ? ' onclick="' . $childbutton['onclick'] . '"' : '', '>
-										', $childbutton['title'], !empty($childbutton['amt']) ? ' <span class="amt">' . $childbutton['amt'] . '</span>' : '', '
-									</a>';
-				// 3rd level menus :)
-				if (!empty($childbutton['sub_buttons']))
-				{
-					echo '
-									<ul>';
-
-					foreach ($childbutton['sub_buttons'] as $grandchildbutton)
-						echo '
-										<li>
-											<a href="', $grandchildbutton['href'], '"', isset($grandchildbutton['target']) ? ' target="' . $grandchildbutton['target'] . '"' : '', isset($grandchildbutton['onclick']) ? ' onclick="' . $grandchildbutton['onclick'] . '"' : '', '>
-												', $grandchildbutton['title'], !empty($grandchildbutton['amt']) ? ' <span class="amt">' . $grandchildbutton['amt'] . '</span>' : '', '
-											</a>
-										</li>';
-
-					echo '
-									</ul>';
-				}
-
-				echo '
-								</li>';
-			}
-			echo '
-							</ul>';
-		}
-		echo '
-						</li>';
-	}
-
-	echo '
-					</ul><!-- .menu_nav -->';
+		</div>';
 }
 
 /**
