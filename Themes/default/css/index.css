@@ -3,6 +3,7 @@
 :root {
 	--primary-color: #006d5b;
 	--secondary-color: #222222;
+	--tertiary-color: #cccccc;
 }
 
 body {
@@ -11,8 +12,8 @@ body {
 }
 ::selection {
 	text-shadow: none;
-	background: #99d4ff;
-	color: rgba(0, 0, 0, 0.6);
+	background: var(--tertiary-color);
+	color: var(--secondary-color);
 }
 * {
 	box-sizing: border-box;
@@ -51,9 +52,7 @@ input:hover, textarea:hover, button:hover, select:hover {
 	outline: none;
 	border-color: var(--primary-color);
 }
-textarea:hover {
-	background: #fbfbfb;
-}
+
 input:focus, textarea:focus, button:focus, select:focus {
 	outline: none;
 	border-color: var(--primary-color);
@@ -120,12 +119,12 @@ select option {
 fieldset {
 	padding: 18px;
 	margin: 0 0 6px 0;
-	border: 1px solid #ddd;
+	border: 1px solid var(--tertiary-color);
 	border-radius: 3px;
 }
 fieldset legend {
 	font-weight: bold;
-	color: #555;
+	color: var(--secondary-color);
 	box-shadow: none;
 	border: none;
 }
@@ -214,7 +213,7 @@ body#help_popup {
 	position: relative;
 	top: -2px;
 	padding: 0 4px;
-	background: linear-gradient(#f97b00,#884d00);
+	/* background: linear-gradient(#f97b00,#884d00); */
 	color: #fff;
 	font: 9px/15px verdana, sans-serif;
 	border-radius: 2px;
@@ -430,27 +429,24 @@ a img {
 .toggle_up::before, .toggle_down::before {
 	width: 17px;
 	height: 17px;
-	display: inline-block;
-	background: #f7f7f7 url(../images/icons/toggle.png) no-repeat 0 0 / 17px;
+	display: grid;
+	place-content: center;
+	background: url(../images/icons/toggle.png);
 	overflow: hidden;
 	content: "";
 	vertical-align: middle;
 	margin: 0 5px 0 5px;
-	border: 1px solid #c5c5c5;
+	border: 1px solid var(--secondary-color);
 	border-radius: 3px;
-	box-shadow: 0 1px 2px rgba(0, 0, 0, .2),
-		0 1px 1px #fff inset,
-		0 -5px 4px rgba(0,0,0,.1) inset;
-	transition: background-color 0.25s;
+	transition: background-color 0.5s;
 }
 .toggle_down::before {
 	background-position: 0 -17px;
 }
 
 .toggle_up:hover:before, .toggle_down:hover:before {
-	background-color: #bfd4e7;
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25) inset;
-	transition: background-color 0.25s;
+	background-color: var(--tertiary-color);
+	transition: background-color 0.5s;
 }
 
 /* Generally, those [?] icons. This makes your cursor a help icon. */
@@ -673,7 +669,7 @@ img.sort, .sort {
 	z-index: 100;
 }
 .auto_suggest_item {
-	background: #ddd;
+	background: var(--tertiary-color);
 	padding: 1px 4px;
 }
 .auto_suggest_item_hover {
@@ -779,10 +775,10 @@ a[class^="mobile_generic_menu_"] {
 }
 .pm_unread, .alerts_unread {
 	margin-top: 5px;
-	border-top: 1px solid #ddd;
+	border-top: 1px solid var(--tertiary-color);
 }
 .unread_notify {
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid var(--tertiary-color);
 }
 .no_unread {
 	margin-top: 5px;
@@ -960,7 +956,7 @@ a[class^="mobile_generic_menu_"] {
 	cursor: pointer;
 	min-height: calc(2em + 2em * (0.9 - 0.85)); /* "input" font size minus ".button" font size */
 	border: 1px solid;
-	border-color: #ddd #bbb #aaa #ddd;
+	border-color: var(--tertiary-color) #bbb #aaa var(--tertiary-color);
 	border-radius: 3px;
 	box-shadow: 1px 1px 1px rgba(221, 221, 221, 0.57);
 	box-sizing: border-box;
@@ -977,8 +973,8 @@ html[lang="el-GR"] .inline_mod_check {
 .button:hover, .button:focus,
 .quickbuttons > li:hover > a, .quickbuttons > li > a:focus {
 	color: #222;
-	border-color: #aaa #ddd #ddd #bbb;
-	box-shadow: -1px -1px 2px rgba(221, 221, 221, 0.7), -1px -2px 4px #ddd inset;
+	border-color: #aaa var(--tertiary-color) var(--tertiary-color) #bbb;
+	box-shadow: -1px -1px 2px rgba(221, 221, 221, 0.7), -1px -2px 4px var(--tertiary-color) inset;
 	text-decoration: none;
 }
 .button:hover, .button:focus {
@@ -1199,7 +1195,7 @@ ul li.greeting {
 	padding: 0 10px;
 	font-size: 0.9em;
 	overflow: hidden;
-	border: 1px solid #ddd;
+	border: 1px solid var(--tertiary-color);
 	border-radius: 2px;
 	box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.08);
 }
@@ -2329,7 +2325,7 @@ dl {
 	margin-left: 25px;
 }
 .list_posts {
-	border-top: 1px solid #ddd;
+	border-top: 1px solid var(--tertiary-color);
 	box-shadow: 0 1px 0 #fff inset;
 	padding-top: 1em;
 	margin-top: 1em;
@@ -2690,7 +2686,7 @@ dl.addrules dt.floatleft {
 #helpmain {
 	margin: 12px 0 0 0;
 	padding: 8px 20px 12px 20px;
-	border: 1px solid #ddd;
+	border: 1px solid var(--tertiary-color);
 	border-radius: 7px;
 	box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.1);
 	overflow: auto;
@@ -2736,7 +2732,7 @@ dl.addrules dt.floatleft {
 	width: 100%;
 	height: 100%;
 	z-index: 6;
-	background: #22222243;
+	background: #22222280;
 	backdrop-filter: blur(20px);
 }
 #genericmenu > .popup_container {
@@ -2787,7 +2783,7 @@ dl.addrules dt.floatleft {
 	background: #f0f4f7;
 	margin: 12px 0 0 0;
 	padding: 12px 16px;
-	border: 1px solid #ddd;
+	border: 1px solid var(--tertiary-color);
 	border-radius: 6px;
 	box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.1);
 	overflow: auto;
@@ -2940,8 +2936,8 @@ h3 .collapse {
 	padding: 13px 10px 10px;
 }
 .boardindex_table .board_stats p {
-	border-left: 1px solid #ddd;
-	border-right: 1px solid #ddd;
+	border-left: 1px solid var(--tertiary-color);
+	border-right: 1px solid var(--tertiary-color);
 }
 .info {
 	overflow: hidden;
@@ -2974,14 +2970,14 @@ h3 .collapse {
 }
 .up_contain {
 	overflow: hidden;
-	border: 1px solid #ddd;
+	border: 1px solid var(--tertiary-color);
 	margin: 0 0 3px 0;
 	display: flex;
 	flex-wrap: wrap;
 }
 /* Child boards */
 .children {
-	border-top: 1px solid #ddd;
+	border-top: 1px solid var(--tertiary-color);
 	padding: 5px;
 	width: 100%;
 }
@@ -3006,7 +3002,7 @@ span.postby {
 	clear: both;
 }
 #info_center .sub_bar {
-	border-top: 1px solid #ddd;
+	border-top: 1px solid var(--tertiary-color);
 }
 #info_center .sub_bar:first-child {
 	border-top: none;
@@ -3045,7 +3041,7 @@ span.postby {
 	width: 25%;
 }
 #ic_recentposts .recenttime strong {
-	color: #555;
+	color: var(--secondary-color);
 }
 #ic_recentposts .windowbg {
 	background: none;
@@ -3482,7 +3478,7 @@ ul.post_options li {
 	border-top: none; /* Some people are OCD, like me. :P */
 }
 #post_draft_options .settings strong {
-	color: #555;
+	color: var(--secondary-color);
 }
 #post_confirm_buttons {
 	display: flex;
@@ -3594,16 +3590,14 @@ ul.post_options li {
 /* Cat_bar / catbg */
 /* TitleBar & SubBar */
 .title_bar {
-	border: 1px solid #ddd;
-	border-top: 2px solid #ff9400;
-	border-bottom: 2px solid #bf6900;
+	border: 1px solid var(--secondary-color);
 	background: #fff;
-	color: #666;
+	color: var(--secondary-color);
 	border-radius: 2px 2px 0 0;
 	margin: 5px 0 0 0;
 }
 .sub_bar {
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid var(--tertiary-color);
 	text-shadow: none;
 	background: none;
 	box-shadow: 0 -1px 0 #999 inset;
@@ -3611,7 +3605,7 @@ ul.post_options li {
 }
 h3.titlebg, h4.titlebg, .titlebg, h3.subbg, h4.subbg, .subbg {
 	background: none;
-	color: #555;
+	color: var(--secondary-color);
 	font-weight: bold;
 	overflow: hidden;
 	padding: 6px 12px 5px 12px;
@@ -3619,7 +3613,7 @@ h3.titlebg, h4.titlebg, .titlebg, h3.subbg, h4.subbg, .subbg {
 }
 .titlebg a, .subbg a {
 	background: none;
-	color: #555;
+	color: var(--secondary-color);
 	text-decoration: none;
 }
 .title_bar + .windowbg, .title_bar + .roundframe {
@@ -3631,10 +3625,10 @@ h3.titlebg, h4.titlebg, .titlebg, h3.subbg, h4.subbg, .subbg {
 /* Other */
 /* Information */
 .information {
-	background: #f8f8f8;
+	background: var(--tertiary-color);
 	overflow: auto;
 	padding-bottom: .5em;
-	border: 1px solid #ddd;
+	border: 1px solid var(--tertiary-color);
 	border-top: none;
 	border-radius: 0 0 7px 7px;
 	margin: 0 0 10px 0;
@@ -3655,7 +3649,7 @@ p.information img {
 }
 #topic_icons .information,
 #messageindex .information {
-	border-top: 1px solid #ddd;
+	border-top: 1px solid var(--tertiary-color);
 }
 .topic_pages {
 	font-size: 0.75em;
@@ -3675,21 +3669,21 @@ p.information img {
 	display: none;
 	margin-top: 18px;
 	background: #fff;
-	border: 1px solid #ddd;
+	border: 1px solid var(--tertiary-color);
 	border-radius: 3px;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 	min-width: 120px;
 	z-index: 11110 !important;
 }
 .atwho-view .cur {
-	background: #3366ff;
+	background: var(--primary-color);
 	color: #fff;
 }
 .atwho-view .cur small {
 	color: #fff;
 }
 .atwho-view strong {
-	color: #3366ff;
+	color: var(--primary-color);
 }
 .atwho-view .cur strong {
 	color: #fff;
@@ -3703,7 +3697,7 @@ p.information img {
 .atwho-view ul li {
 	display: block;
 	padding: 5px 10px;
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid var(--tertiary-color);
 	cursor: pointer;
 }
 .atwho-view small {
@@ -3812,7 +3806,7 @@ h3.profile_hd::before,
 	border-radius: 3px;
 }
 .notify_dropdown a:hover, .notify_dropdown a:focus {
-	border-color: #ddd;
+	border-color: var(--tertiary-color);
 }
 .notify_dropdown span {
 	font-size: 0.9em;
@@ -4045,7 +4039,7 @@ tr[id^='list_news_lists_'] textarea {
 
 .backtrace:not(:last-child) {
 	padding-bottom: 0.5em;
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid var(--tertiary-color);
 	margin-bottom: 0.5em;
 }
 
@@ -4165,16 +4159,12 @@ nav {
 	place-content: center;
 	position: absolute;
 	right: 0;
-	bottom: 1rem;
-	z-index: 9999;
+	bottom: 1.5rem;
+	z-index: 9;
 }
 
 form.login {
 	display: grid;
 	gap: 5px;
 	margin-top: 12px;
-}
-
-input {
-	padding: .5rem 1rem;
 }

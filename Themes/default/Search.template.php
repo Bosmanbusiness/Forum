@@ -15,7 +15,7 @@
  */
 function template_main()
 {
-	global $context, $txt, $scripturl, $modSettings;
+	global $context, $txt, $scripturl, $modSettings, $settings;
 
 	echo '
 	<form action="', $scripturl, '?action=search2" method="post" accept-charset="', $context['character_set'], '" name="searchform" id="searchform">';
@@ -138,7 +138,8 @@ function template_main()
 			<div class="roundframe alt">
 				<div class="title_bar">
 					<h4 class="titlebg">
-						<span id="advanced_panel_toggle" class="toggle_down floatright" style="display: none;"></span>
+						<span id="advanced_panel_toggle" class="toggle_down floatright"></span>
+						<img id="advanced_panel_toggle" src="' . $settings['images_url'] . '/icons/arrow_down.svg"  class="toggle_down floatright" />
 						<a href="#" id="advanced_panel_link">', $txt['choose_board'], '</a>
 					</h4>
 				</div>
