@@ -18,13 +18,7 @@ function template_login()
 	global $context, $settings, $scripturl, $modSettings, $txt;
 
 	echo '
-		<div class="login">
-			<div class="cat_bar">
-				<h3 class="catbg">
-					<span class="main_icons login"></span> ', $txt['login'], '
-				</h3>
-			</div>
-			<div class="roundframe">
+			<div class="login_frame">
 				<form class="login" action="', $context['login_url'], '" name="frmLogin" id="frmLogin" method="post" accept-charset="', $context['character_set'], '">';
 
 	// Did they make a mistake last time?
@@ -39,44 +33,32 @@ function template_login()
 					<div class="information">', $context['description'], '</div>';
 
 	// Now just get the basic information - username, password, etc.
-	echo '
-					<dl>
-						<dt>', $txt['username'], ':</dt>
-						<dd>
-							<input type="text" id="', !empty($context['from_ajax']) ? 'ajax_' : '', 'loginuser" name="user" size="20" value="', $context['default_username'], '" required>
-						</dd>
-						<dt>', $txt['password'], ':</dt>
-						<dd>
-							<input type="password" id="', !empty($context['from_ajax']) ? 'ajax_' : '', 'loginpass" name="passwrd" value="', $context['default_password'], '" size="20" required>
-						</dd>
-					</dl>
-					<dl>
-						<dt>', $txt['time_logged_in'], ':</dt>
-						<dd>
-							<select name="cookielength" id="cookielength">';
+	echo '	
+						<label>', $txt['username'], ':</label>
+						<input type="text" id="', !empty($context['from_ajax']) ? 'ajax_' : '', 'loginuser" name="user" size="20" value="', $context['default_username'], '" required>
+
+						<label>', $txt['password'], ':</label>
+						<input type="password" id="', !empty($context['from_ajax']) ? 'ajax_' : '', 'loginpass" name="passwrd" value="', $context['default_password'], '" size="20" required>
+
+						<label>', $txt['time_logged_in'], ':</label>
+						<select name="cookielength" id="cookielength" style="width: 100%">';
 
 	foreach ($context['login_cookie_times'] as $cookie_time => $cookie_txt)
 		echo '
 								<option value="', $cookie_time, '"', $modSettings['cookieTime'] == $cookie_time ? ' selected' : '', '>', $txt[$cookie_txt], '</option>';
 
 	echo '
-							</select>
-						</dd>';
+						</select>';
 
 	// If they have deleted their account, give them a chance to change their mind.
 	if (isset($context['login_show_undelete']))
 		echo '
-						<dt class="alert">', $txt['undelete_account'], ':</dt>
-						<dd><input type="checkbox" name="undelete"></dd>';
+						<div class="alert">', $txt['undelete_account'], ':</div>
+						<div><input type="checkbox" name="undelete"></div>';
 
 	echo '
-					</dl>
-					<p>
-						<input type="submit" value="', $txt['login'], '" class="button">
-					</p>
-					<p class="smalltext">
-						<a href="', $scripturl, '?action=reminder">', $txt['forgot_your_password'], '</a>
-					</p>';
+						<input type="submit" value="', $txt['login'], '" class="btn_primary" style="margin-top: 1.5rem;">
+						<a href="', $scripturl, '?action=reminder" class="btn_secondary" style="width: fit-content; font-size: .8rem; text-align: center; margin: 0 auto">', $txt['forgot_your_password'], '</a>';
 	if (!empty($modSettings['registration_method']) && $modSettings['registration_method'] == 1)
 		echo '
 					<p class="smalltext">
@@ -161,8 +143,7 @@ function template_login()
 				<a href="javascript:self.close();"></a>';
 
 	echo '
-			</div><!-- .roundframe -->
-		</div><!-- .login -->';
+			</div><!-- .roundframe -->';
 }
 
 /**
