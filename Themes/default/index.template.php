@@ -280,8 +280,8 @@ function template_body_above()
 					<div id="main_menu">
 						<div id="mobile_user_menu" class="popup_container ">
 							<div class="popup_window nav_mobile">
-								<div class="nav_dropdown popup_heading">
-									<a href="javascript:void(0);" class="hide_popup">
+								<div class="popup_heading">
+									<a href="javascript:void(0);" class="hide_popup nav_dropdown">
 										<img src="' . $settings['images_url'] . '/icons/cancel.svg" width="36px" />
 									</a>
 								</div>
@@ -304,7 +304,7 @@ function template_body_above()
 				
 				</div>
 			</nav>';
-			theme_linktree();
+			// theme_linktree();
 		}
 	}
 	else
@@ -341,43 +341,6 @@ function template_body_above()
 
 	</div>
 	<div id="wrapper">
-		<div id="upper_section">
-			<div id="inner_section">
-				<div id="inner_wrap"', !$context['user']['is_logged'] ? ' class="hide_720"' : '', '>
-					<div class="user">
-						<time datetime="', smf_gmstrftime('%FT%TZ'), '">', $context['current_time'], '</time>';
-
-	if ($context['user']['is_logged'])
-		echo '
-						<ul class="unread_links">
-							<li>
-								<a href="', $scripturl, '?action=unread" title="', $txt['unread_since_visit'], '">', $txt['view_unread_category'], '</a>
-							</li>
-							<li>
-								<a href="', $scripturl, '?action=unreadreplies" title="', $txt['show_unread_replies'], '">', $txt['unread_replies'], '</a>
-							</li>
-						</ul>';
-
-	echo '
-					</div>';
-
-	// Show a random news item? (or you could pick one from news_lines...)
-	if (!empty($settings['enable_news']) && !empty($context['random_news_line']))
-		echo '
-					<div class="news">
-						<h2>', $txt['news'], ': </h2>
-						<p>', $context['random_news_line'], '</p>
-					</div>';
-
-	echo '
-				</div>';
-
-	echo '
-			</div><!-- #inner_section -->
-		</div><!-- #upper_section -->';
-
-	// The main content should go here.
-	echo '
 		<div id="content_section">
 			<div id="main_content_section">';
 }
@@ -387,7 +350,7 @@ function template_body_above()
  */
 function template_body_below()
 {
-	global $context, $txt, $scripturl, $modSettings;
+	global $context,$settings, $txt, $scripturl, $modSettings;
 
 	echo '
 			</div><!-- #main_content_section -->
@@ -398,23 +361,14 @@ function template_body_below()
 	// Show the footer with copyright, terms and help links.
 	echo '
 	<div id="footer">
-		<div class="inner_wrap">';
-
-	// There is now a global "Go to top" link at the right.
-	echo '
-		<ul>
-			<li class="floatright"><a href="', $scripturl, '?action=help">', $txt['help'], '</a> ', (!empty($modSettings['requireAgreement'])) ? '| <a href="' . $scripturl . '?action=agreement">' . $txt['terms_and_rules'] . '</a>' : '', ' | <a href="#top_section">', $txt['go_up'], ' &#9650;</a></li>
-			<li class="copyright">', theme_copyright(), '</li>
-		</ul>';
-
-	// Show the load time?
-	if ($context['show_load_time'])
-		echo '
-		<p>', sprintf($txt['page_created_full'], $context['load_time'], $context['load_queries']), '</p>';
-
-	echo '
+		<div class="inner_wrap relative padding">
+			<p>&copy; Bosmanbusiness World ', date('Y'),'</p>
+			<a href="#top_section" class="top_btn">
+				<img src="' . $settings['images_url'] . '/icons/arrow_up.svg" alt="Search Icon" />
+			</a>
 		</div>
-	</div><!-- #footer -->';
+	</div>';
+	// <!-- #footer -->'
 
 }
 

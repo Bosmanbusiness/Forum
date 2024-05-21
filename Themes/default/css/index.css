@@ -1257,17 +1257,9 @@ ul li.greeting {
 #footer {
 	margin: 4em 0 0 0;
 	padding: 10px 0;
-	background: #3e5a78;
-	border-top: 3px solid #b2b6bd;
-	flex: none;
+	border-top: 1px solid var(--secondary-color);
 }
-#footer li, #footer p, #footer a {
-	font-size: 0.9em;
-	color: #fff;
-}
-#footer li.copyright {
-	display: block;
-}
+
 #footerfix {
 	flex: 1 0 auto;
 }
@@ -4154,6 +4146,10 @@ img.theme_thumbnail {
 	display: flex;
 }
 
+.padding{
+	padding: .5rem 1rem;
+}
+
 .items-center {
 	align-items: center;
 }
@@ -4205,7 +4201,7 @@ nav {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1rem;
+	padding: 1rem 1rem;
 }
 
 .nav_mobile {
@@ -4213,11 +4209,29 @@ nav {
 	overflow-x: hidden;
 	margin: 0;
 	padding: 0;
+	top: 0;
 }
 
 .nav_dropdown {
-	display: flex !important;
-	justify-content: flex-end !important;
 	border-bottom: 1px solid var(--secondary-color);
 	margin-bottom: 12px;
+	width: 100% !;
+}
+
+.relative{
+	position: relative;
+}
+
+.top_btn {
+	width: 56px;
+	background: white;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	border: 1px solid var(--secondary-color);
+	display: grid;
+	place-content: center;
+	position: absolute;
+	right: 0;
+	bottom: 1rem;
+	z-index: 9999;
 }
