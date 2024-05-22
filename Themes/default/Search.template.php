@@ -138,8 +138,7 @@ function template_main()
 			<div class="roundframe alt">
 				<div class="title_bar">
 					<h4 class="titlebg">
-						<span id="advanced_panel_toggle" class="toggle_down floatright"></span>
-						<img id="advanced_panel_toggle" src="' . $settings['images_url'] . '/icons/arrow_down.svg"  class="toggle_down floatright" />
+						<img id="advanced_panel_link" src="' . $settings['images_url'] . '/icons/arrow_down.svg" width="20px" class="floatright" />
 						<a href="#" id="advanced_panel_link">', $txt['choose_board'], '</a>
 					</h4>
 				</div>
@@ -200,7 +199,7 @@ function template_main()
 				<div class="padding">
 					<input type="checkbox" name="all" id="check_all" value=""', $context['boards_check_all'] ? ' checked' : '', ' onclick="invertAll(this, this.form, \'brd\');">
 					<label for="check_all"><em>', $txt['check_all'], '</em></label>
-					<input type="submit" name="b_search" value="', $txt['search'], '" class="button floatright">
+					<input type="submit" name="b_search" value="', $txt['search'], '" class="btn_primary floatright">
 				</div>
 			</div><!-- .roundframe -->
 		</fieldset>';
