@@ -208,39 +208,43 @@ function template_body_above()
 	{
 		// Firstly, the user's menu
 		echo '
-			<ul class="floatleft" id="top_info">
-				<li>
-					<a href="', $scripturl, '?action=profile"', !empty($context['self_profile']) ? ' class="active"' : '', ' id="profile_menu_top">';
+			<nav id="top_info">
+			<a id="top" href="', $scripturl, '" title="', $context['forum_name_html_safe'], '"/>
+				<img src="' . $settings['images_url'] . '/logo.svg" width="100%" alt="Forum Logo" />
+			</a>
+			<div>
+			<a href="', $scripturl, '?action=pm" class="btn_secondary" id="pm_menu_top">
+				<span class="main_icons inbox"></span>
+				<span class="textmenu">', $txt['pm_short'], '</span>', !empty($context['user']['unread_messages']) ? '
+				<span class="amt">' . $context['user']['unread_messages'] . '</span>' : '', '
+			</a>
+			<div id="pm_menu" class="top_menu scrollable"></div>
+
+			<a href="', $scripturl, '?action=profile;area=showalerts;u=', $context['user']['id'], '"  class="btn_secondary" id="alerts_menu_top">
+				<span class="main_icons alerts"></span>
+				<span class="textmenu">', $txt['alerts'], '</span>', !empty($context['user']['alerts']) ? '
+				<span class="amt">' . $context['user']['alerts'] . '</span>' : '', '
+			</a>
+			<div id="alerts_menu" class="top_menu scrollable"></div>';
 
 		if (!empty($context['user']['avatar']))
-			echo $context['user']['avatar']['image'];
+			// echo $context['user']['avatar']['image'];
 
-		echo '<span class="textmenu">', $context['user']['name'], '</span></a>
-					<div id="profile_menu" class="top_menu"></div>
-				</li>';
+		echo '
+		<a href="', $scripturl, '?action=profile" class="active" id="profile_menu_top">
+		<span >', $context['user']['avatar']['image'],' style="width: 24px;" </span>
+		<span class="textmenu">', $context['user']['name'], '</span>
+		</a>
+		<div id="profile_menu" class="top_menu"></div>';
 
 		// Secondly, PMs if we're doing them
-		if ($context['allow_pm'])
-			echo '
-				<li>
-					<a href="', $scripturl, '?action=pm"', !empty($context['self_pm']) ? ' class="active"' : '', ' id="pm_menu_top">
-						<span class="main_icons inbox"></span>
-						<span class="textmenu">', $txt['pm_short'], '</span>', !empty($context['user']['unread_messages']) ? '
-						<span class="amt">' . $context['user']['unread_messages'] . '</span>' : '', '
-					</a>
-					<div id="pm_menu" class="top_menu scrollable"></div>
-				</li>';
+		// if ($context['allow_pm'])
+		// 	echo '
+
+		// 			';
 
 		// Thirdly, alerts
-		echo '
-				<li>
-					<a href="', $scripturl, '?action=profile;area=showalerts;u=', $context['user']['id'], '"', !empty($context['self_alerts']) ? ' class="active"' : '', ' id="alerts_menu_top">
-						<span class="main_icons alerts"></span>
-						<span class="textmenu">', $txt['alerts'], '</span>', !empty($context['user']['alerts']) ? '
-						<span class="amt">' . $context['user']['alerts'] . '</span>' : '', '
-					</a>
-					<div id="alerts_menu" class="top_menu scrollable"></div>
-				</li>';
+		echo '';
 
 		// A logout button for people without JavaScript.
 		if (empty($settings['login_main_menu']))
@@ -248,11 +252,12 @@ function template_body_above()
 				<li id="nojs_logout">
 					<a href="', $scripturl, '?action=logout;', $context['session_var'], '=', $context['session_id'], '">', $txt['logout'], '</a>
 					<script>document.getElementById("nojs_logout").style.display = "none";</script>
-				</li>';
+				</li>
+				</div>';
 
 		// And now we're done.
 		echo '
-			</ul>';
+			</nav>';
 	}
 	// Otherwise they're a guest. Ask them to either register or login.
 	elseif (empty($maintenance))
