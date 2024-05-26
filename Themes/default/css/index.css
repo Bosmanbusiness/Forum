@@ -845,14 +845,10 @@ a[class^="mobile_generic_menu_"] {
 	position: absolute;
 	display: none;
 	min-width: 18.2em;
-	padding: 0.5em;
-	font-weight: normal;
-	border: solid 1px #999;
-	border-left: solid 1px #bbb;
-	border-top: solid 1px #ccc;
-	border-radius: 4px;
-	box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.3);
-	background: #fff;
+	padding: 1rem;
+	border: solid 1px var(--secondary-color);
+	/* border-radius: 4px; */
+	background: white;
 }
 /* Level 2 link background. */
 .dropmenu li li {
@@ -2753,6 +2749,7 @@ dl.addrules dt.floatleft {
 	width: 50%;
 	border-radius: 12px;
 	border: 1px solid var(--secondary-color);
+	background-color: white;
 }
 #main_menu .popup_heading,
 #genericmenu .popup_heading,
@@ -3774,14 +3771,6 @@ h3.profile_hd::before,
 
 /* Those classes are sharing exact same gradient. */
 /* Background of buttons */
-.dropmenu li ul, .top_menu, .dropmenu li li:hover, .button,
-.dropmenu li li:hover > a, .dropmenu li li a:focus, .dropmenu li li a:hover,
-#top_section, .quickbuttons > li,
-.quickbuttons li ul, .quickbuttons li ul li a:hover, .quickbuttons ul li a:focus,
-.inline_mod_check, .popup_window, #inner_section, .post_options ul,
-.post_options ul a:hover, .post_options ul a:focus, .notify_dropdown a:hover, .notify_dropdown a:focus {
-	background: #fff; /* fallback for some browsers */
-}
 /* Well some of them has different gradient effect on hover */
 .button:hover, #search_form .button:hover, .quickbuttons li:hover {
 	background: #fff;
@@ -4149,7 +4138,8 @@ img.theme_thumbnail {
 	width: 24px;
 	aspect-ratio: 1;
 	border-radius: 50%;
-	background: var(--secondary-color);
+	background: white;
+	border: 1px solid var(--secondary-color);
 	object-fit: cover;
 }
 

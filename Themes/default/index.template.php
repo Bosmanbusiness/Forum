@@ -214,44 +214,41 @@ function template_body_above()
 			</a>
 
 			<div>
+				<a class="mobile_user_menu">
+					<img src="' . $settings['images_url'] . '/icons/hamburger.svg" alt="Menu Icon" />
+				</a>
+				<div id="main_menu">
+					<div id="mobile_user_menu" class="popup_container ">
+						<div class="popup_window nav_mobile">
+							<div class="popup_heading">
+								<a href="javascript:void(0);" class="hide_popup nav_dropdown">
+									<img src="' . $settings['images_url'] . '/icons/cancel.svg" width="36px" />
+								</a>
+							</div>
 
-			<a class="mobile_user_menu">
-				<img src="' . $settings['images_url'] . '/icons/hamburger.svg" alt="Menu Icon" />
-			</a>
-			<div id="main_menu">
-				<div id="mobile_user_menu" class="popup_container ">
-					<div class="popup_window nav_mobile">
-						<div class="popup_heading">
-							<a href="javascript:void(0);" class="hide_popup nav_dropdown">
-								<img src="' . $settings['images_url'] . '/icons/cancel.svg" width="36px" />
-							</a>
-						</div>
+							<div class="flex items-center" style="gap: 1rem">
+								<a href="', $scripturl, '?action=pm" class="btn_secondary">
+									<span>', $txt['pm_short'], '</span>
+								</a>
 
-						<div class="flex items-center" style="gap: 1rem">
-						<a href="', $scripturl, '?action=pm" class="btn_secondary" id="pm_menu_top">
-							<span>', $txt['pm_short'], '</span>', !empty($context['user']['unread_messages']) ? '
-							<span>' . $context['user']['unread_messages'] . '</span>' : '', '
-						</a>
-						<div id="pm_menu" class="top_menu scrollable"></div>
-					<a href="', $scripturl, '?action=profile;area=showalerts;u=', $context['user']['id'], '"  class="btn_secondary" id="alerts_menu_top">
-						<span>', $txt['alerts'], '</span>', !empty($context['user']['alerts']) ? '
-						<span class="amt">' . $context['user']['alerts'] . '</span>' : '', '
-					</a>
-					<div id="alerts_menu" class="top_menu scrollable"></div>
-					<a href="', $scripturl, '?action=profile" class="btn_tertiary" id="profile_menu_top">
-						<span class="avatar_wrapper">
-						', $context['user']['avatar']['image'],'
-							<p>', $context['user']['name'], '</p>
-						</span>
-						<img src="' . $settings['images_url'] . '/icons/arrow_down.svg" width="12px" alt="Dropdown Icon" class="dropdown" />
-					</a>
-					<div id="profile_menu" class="top_menu"></div>
+								<a href="', $scripturl, '?action=profile;area=showalerts;u=', $context['user']['id'], '"  class="btn_secondary" >
+									<span>', $txt['alerts'], '</span>', !empty($context['user']['alerts']) ? '
+									<span class="amt">' . $context['user']['alerts'] . '</span>' : '', '
+								</a>
+
+								<a href="', $scripturl, '?action=profile" class="btn_tertiary">
+									<span class="avatar_wrapper">
+									', $context['user']['avatar']['image'],'
+										<p>', $context['user']['name'], '</p>
+									</span>
+								</a>
+								<a href="', $scripturl, '?action=logout;', $context['session_var'], '=', $context['session_id'], '">', $txt['logout'], '</a>
+								<script>document.getElementById("nojs_logout").style.display = "none";</script>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		
-		</div>';
+			</div>';
 
 		// A logout button for people without JavaScript.
 		if (empty($settings['login_main_menu']))
