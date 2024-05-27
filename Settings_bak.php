@@ -62,7 +62,7 @@ $boardurl = 'http://localhost/smf';
  *
  * @var string
  */
-$webmaster_email = 'noreply@myserver.com';
+$webmaster_email = 'webmaster@email.com';
 /**
  * Name of the cookie to set for authentication.
  *
@@ -244,6 +244,7 @@ $packagesdir = 'C:/xampp/htdocs/smf/Packages';
  * @var string
  */
 $tasksdir = 'C:/xampp/htdocs/smf/Sources/tasks';
+$cachedir_sqlite = 'C:/xampp/htdocs/smf/cache';
 
 # Make sure the paths are correct... at least try to fix them.
 if (!is_dir(realpath($boarddir)) && file_exists(dirname(__FILE__) . '/agreement.txt'))

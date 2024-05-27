@@ -25,6 +25,13 @@ body {
 a {
 	text-decoration: none;
 	cursor: pointer;
+	color: var(--secondary-color);
+	transition: .5s ease-in-out;
+	border: 1px solid transparent;
+}
+a:hover {
+	color: var(--primary-color);
+	border-bottom: 1px solid var(--primary-color);
 }
 ul, ol {
 	list-style: none;
@@ -429,24 +436,16 @@ a img {
 .toggle_up::before, .toggle_down::before {
 	width: 17px;
 	height: 17px;
-	display: grid;
-	place-content: center;
-	background: url(../images/icons/toggle.png);
+	display: inline-block;
+	background: url(../images/icons/arrow_down.svg) no-repeat 0 0 / 17px;
 	overflow: hidden;
 	content: "";
 	vertical-align: middle;
-	margin: 0 5px 0 5px;
-	border: 1px solid var(--secondary-color);
-	border-radius: 3px;
-	transition: background-color 0.5s;
-}
-.toggle_down::before {
-	background-position: 0 -17px;
+	transform: rotate(180deg);
 }
 
-.toggle_up:hover:before, .toggle_down:hover:before {
-	background-color: var(--tertiary-color);
-	transition: background-color 0.5s;
+.toggle_down::before {
+	transform: rotate(0deg);
 }
 
 /* Generally, those [?] icons. This makes your cursor a help icon. */
@@ -863,7 +862,7 @@ a[class^="mobile_generic_menu_"] {
 .dropmenu li:hover li a, .dropmenu li li a {
 	background: none;
 	padding: 0 9px;
-	color: #346;
+	color: var(--secondary-color);
 	border: none;
 	line-height: 2.2em;
 }
@@ -1017,13 +1016,6 @@ html[lang="el-GR"] .inline_mod_check {
 ------------------------------------------------------- */
 
 /* Box-shadow only on this one. */
-#wrapper {
-	clear: both;
-	background: #fff;
-	border: 1px solid #b8b8b8;
-	border-radius: 8px;
-	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.14);
-}
 
 /* Set maximum width limit for content */
 #top_section .inner_wrap, #wrapper, #header, #footer .inner_wrap {
@@ -2959,13 +2951,8 @@ h3 .collapse {
 	display: inline-block;
 	align-self: center;
 }
-.main_container {
-	margin-bottom: 20px;
-}
 .up_contain {
 	overflow: hidden;
-	border: 1px solid var(--tertiary-color);
-	margin: 0 0 3px 0;
 	display: flex;
 	flex-wrap: wrap;
 }
@@ -3252,6 +3239,7 @@ div#pollmoderation {
 	font-weight: bold;
 }
 /* @todo Re-code this a bit to give background on anchor. */
+
 .poster li.poster_online, .poster li.poster_online:hover {
 	padding: 1px 1px 1px 1px;
 	margin: 3px 10px;
@@ -4079,6 +4067,14 @@ img.theme_thumbnail {
 	justify-content: flex-end;
 }
 
+.no_border{
+	border: none;
+}
+
+.no_border:hover{
+	border: none;
+}
+
 .btn_primary {
 	color: white;
 	font-size: 16px;
@@ -4090,16 +4086,17 @@ img.theme_thumbnail {
 	transition: .5s ease-in-out;
 	border-radius: 8px;
 	margin: auto;
+	border: none;
 }
 
 .btn_primary:hover {
 	background-color: var(--primary-color);
+	border: none;
 }
 
 .btn_secondary {
 	color: var(--secondary-color);
 	font-size: 16px;
-	/* display: block; */
 	text-decoration: none;
 	text-align: center;
 	transition: .5s ease-in-out;
@@ -4120,18 +4117,16 @@ img.theme_thumbnail {
 	text-decoration: none;
 	text-align: center;
 	transition: .5s ease-in-out;
-	border-radius: 8px;
+	border-radius: .5rem;
 	align-items: center;
-	gap: 1rem;
+	gap: .5rem;
 	width: fit-content;
+	border: none;
 }
 
 .btn_tertiary:hover{
 	color: var(--primary-color);
-}
-
-.btn_tertiary.open .dropdown{
-	animation: rotate 0.3s linear both;
+	border: none;
 }
 
 .avatar_wrapper>.avatar {
@@ -4179,7 +4174,7 @@ nav {
 	background: white;
 	aspect-ratio: 1;
 	border-radius: 50%;
-	border: 1px solid var(--secondary-color);
+	border: 1px solid var(--tertiary-color);
 	display: grid;
 	place-content: center;
 	position: absolute;
@@ -4193,6 +4188,45 @@ form.login {
 	gap: 5px;
 	margin-top: 12px;
 }
+
+.main_container {
+	display: grid;
+	gap: 8px;
+	border: 1px solid var(--tertiary-color);
+	padding: .5rem 1rem;
+}
+
+.recent_posts_list {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1rem;
+	margin: 1rem 0;
+}
+
+.recent_post_item {
+	padding: 1rem;
+	border: 1px solid var(--tertiary-color);
+	width: 100%;
+	border-radius: 1.2rem;
+}
+
+
+
+
+
+@media screen and (max-width: 600px) {
+	.recent_posts_list {
+		display: grid;
+		grid-template-columns: auto;
+		gap: 1rem;
+		margin: 1rem 0;
+	}
+}
+
+
+
+
+
 
 /* Animation keyframes */
 @keyframes rotate {
