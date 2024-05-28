@@ -29,11 +29,8 @@ a {
 	transition: .5s ease-in-out;
 	border: 1px solid transparent;
 }
-a:hover {
-	color: var(--primary-color);
-	border-bottom: 1px solid var(--primary-color);
-}
-ul, ol {
+
+ul, ol, li {
 	list-style: none;
 }
 ul.normallist {
@@ -179,10 +176,9 @@ input[disabled], textarea[disabled], select[disabled], .button.disabled, .button
 /* Standard horizontal rule.. ([hr], etc.) */
 hr {
 	border: none;
-	margin: 12px 0;
-	height: 2px;
-	background: #fff;
-	box-shadow: 0 1px 0 #bbb inset;
+	margin: 6px 0;
+	height: 1px;
+	background: var(--tertiary-color);
 }
 /* Help popups require a different styling of the body element. */
 /* Deprecated? */
@@ -480,7 +476,7 @@ strong[id^='child_list_']::after {
 }
 .pages {
 	font-size: 0.9em;
-	margin-left: 7px;
+	margin: 0 1rem;
 }
 #main_content_section .pagesection {
 	margin: 4px 0 0 0;
@@ -496,14 +492,19 @@ strong[id^='child_list_']::after {
 	cursor: pointer;
 }
 .current_page {
-	padding: 0 4px 0 2px;
-	color: #b46100;
+	width: 2rem;
+	aspect-ratio: 1;
+	display: grid;
+	place-content: center;
+	color: white;
 	font-weight: bold;
+	border-radius: 6px;
+	background-color: var(--primary-color);
 }
-.current_page::before, .codeoperation::before {
+.codeoperation::before {
 	content: "[";
 }
-.current_page::after, .codeoperation::after {
+.codeoperation::after {
 	content: "]";
 }
 
@@ -941,6 +942,10 @@ a[class^="mobile_generic_menu_"] {
 .buttonlist, .buttonrow, .pagelinks {
 	z-index: 100;
 	padding: 5px 0 5px 0;
+	display: flex;
+	gap: .5rem;
+	justify-content: center;
+	align-items: center;
 }
 .button, .quickbuttons > li > a, .inline_mod_check {
 	display: inline-block;
@@ -1177,12 +1182,11 @@ ul li.greeting {
 }
 .navigate_section ul {
 	margin: 4px 0 0 0;
-	padding: 0 10px;
+	padding: .5rem 1rem;
 	font-size: 0.9em;
 	overflow: hidden;
 	border: 1px solid var(--tertiary-color);
-	border-radius: 2px;
-	box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.08);
+	border-radius: 6px;
 }
 .navigate_section ul li {
 	float: left;
@@ -1273,7 +1277,7 @@ ul li.greeting {
 	display: block;
 	height: auto;
 	padding: 0 4px;
-	color: #222;
+	color: var(--secondary-color);
 	line-height: 1.375rem;
 	border-radius: 0;
 }
@@ -3182,10 +3186,6 @@ div#pollmoderation {
 }
 
 /* On to the posts */
-#forumposts {
-	clear: both;
-	margin: 8px 0 0 0;
-}
 #forumposts .cat_bar {
 	margin: 0 0 -4px 0;
 }
@@ -3201,43 +3201,29 @@ div#pollmoderation {
 	padding: 2px 0;
 }
 /* poster and postarea + moderation area underneath */
-.post_wrapper::after {
-	content: "";
-	display: block;
-	clear: both;
+.post_wrapper {
+	display: flex;
+	gap: 1rem;
 }
 /* poster details and list of items */
 .poster {
 	float: left;
 	/* Don't set this in em.It will eat too much space if people need to set large text sizes. */
-	width: 160px;
+	width: 30%;
 	-webkit-hyphens: auto;
 	-ms-hyphens: auto;
 	hyphens: auto;
 	word-wrap: break-word; /* IE fallback */
 	overflow-wrap: break-word;
+	border: 1px solid var(--tertiary-color);
+	border-radius: 6px;
+	padding: 1rem;
 }
 .poster h4 {
 	font-size: 1.2em;
 }
-.poster h4, .poster h4 a, .poster li:hover h4 a, .poster h4 a:hover .poster li h4 a, .poster h4 a:focus {
-	margin: 0;
-	padding: 0;
-	color: #c06002;
-}
-
-.poster .profile .profile_icons li, .poster .im_icons li {
-	display: table-cell;
-	padding-right: 5px;
-}
 
 /* The visible stuff below the avatar. */
-.user_info > li {
-	margin: 3px 0 0 0;
-}
-.poster li.membergroup {
-	font-weight: bold;
-}
 /* @todo Re-code this a bit to give background on anchor. */
 
 .poster li.poster_online, .poster li.poster_online:hover {
@@ -3264,8 +3250,12 @@ img.avatar {
 .poster img.avatar {
 	max-width: 100%;
 }
-.postarea, .moderatorbar {
-	margin: 0 0 0 175px;
+.postarea {
+	width: 100%;
+	padding: 1rem;
+	border: 1px solid var(--tertiary-color);
+	border-radius: 6px;
+	position: relative;
 }
 .postarea div.flow_hidden {
 	width: 100%;
@@ -3509,7 +3499,7 @@ ul.post_options li {
 	margin: 6px;
 }
 /* All the signatures used in the forum. If your forum users use Mozilla, Opera, or Safari, you might add max-height here ;). */
-.signature, .attachments, .under_message,
+/* .signature, .attachments, .under_message,
 .custom_fields_above_signature,
 .custom_fields_below_signature {
 	width: 100%;
@@ -3520,11 +3510,13 @@ ul.post_options li {
 	box-shadow: 0 1px 0 #fff inset;
 	line-height: 1.4em;
 	font-size: 0.9em;
-}
+} */
 .under_message {
 	overflow: visible;
 	border: none;
 	box-shadow: none;
+	position: absolute;
+	bottom: 1rem;
 }
 .smflikebutton {
 	margin-top: 4px;
@@ -3607,20 +3599,13 @@ h3.titlebg, h4.titlebg, .titlebg, h3.subbg, h4.subbg, .subbg {
 /* Other */
 /* Information */
 .information {
-	background: var(--tertiary-color);
 	overflow: auto;
-	padding-bottom: .5em;
 	border: 1px solid var(--tertiary-color);
-	border-top: none;
-	border-radius: 0 0 7px 7px;
-	margin: 0 0 10px 0;
-	padding: 12px 9px 8px 9px;
+	padding: 1rem;
+	border-radius: 1rem;
 }
 .generic_list_wrapper .information div {
 	background: none;
-}
-.information a:not(.button) {
-	font-weight: bold;
 }
 p.information img {
 	vertical-align: middle;
@@ -3789,19 +3774,16 @@ h3.profile_hd::before,
 /* Some new stuff */
 #display_head {
 	clear: both;
-	margin: -7px 0 15px 0;
 }
 #display_head p {
-	color: #959595;
+	color: var(--tertiary-color);
 }
 #display_head span {
 	margin: -4px 0 0 0;
 }
 .display_title {
 	font-weight: normal;
-	font-size: 26px;
-	margin-bottom: 0.25em;
-	line-height: 1.05em;
+	font-size: 1.5rem;
 	overflow-wrap: break-word;
 }
 
@@ -4111,8 +4093,8 @@ img.theme_thumbnail {
 .btn_tertiary {
 	color: var(--secondary-color);
 	font-size: 16px;
-	background-color: var(--tertiary-color);
 	padding: .5rem 1rem;
+	border: 1px solid var(--tertiary-color);
 	display: flex;
 	text-decoration: none;
 	text-align: center;
@@ -4121,12 +4103,12 @@ img.theme_thumbnail {
 	align-items: center;
 	gap: .5rem;
 	width: fit-content;
-	border: none;
 }
 
 .btn_tertiary:hover{
 	color: var(--primary-color);
-	border: none;
+	border: 1px solid var(--primary-color);
+	background: var(--tertiary-color);
 }
 
 .avatar_wrapper>.avatar {
@@ -4138,10 +4120,25 @@ img.theme_thumbnail {
 	object-fit: cover;
 }
 
+.avatar {
+	border: 1px solid var(--secondary-color);
+	border-radius: 50%;
+	object-fit: cover;
+	margin: 0 auto;
+}
+
+
+
 .avatar_wrapper {
 	display: flex;
 	align-items: center;
 	gap: .5rem;
+}
+
+.poster_avatar {
+	display: grid;
+	place-content: center;
+	text-align: center;
 }
 
 nav {
@@ -4194,6 +4191,7 @@ form.login {
 	gap: 8px;
 	border: 1px solid var(--tertiary-color);
 	padding: .5rem 1rem;
+	border-radius: 1rem;
 }
 
 .recent_posts_list {
@@ -4210,16 +4208,41 @@ form.login {
 	border-radius: 1.2rem;
 }
 
+.window {
+	padding: 1rem;
+	border: 1px solid var(--tertiary-color);
+	width: 100%;
+	border-radius: 1.2rem;
+	margin-top: 1rem;
+}
 
 
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 720px) {
 	.recent_posts_list {
 		display: grid;
 		grid-template-columns: auto;
 		gap: 1rem;
 		margin: 1rem 0;
+	}
+
+	.post_wrapper {
+		flex-direction: column;
+		height: 100%;
+	}
+
+	.user_info li{
+		display: block !important;
+	}
+
+	.user_info li::before {
+		display: none;
+	}
+
+	.poster{
+		height: 100%;
+		display: block;
 	}
 }
 
