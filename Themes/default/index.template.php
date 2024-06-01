@@ -247,8 +247,6 @@ function template_body_above()
 										<p>', $context['user']['name'], '</p>
 									</span>
 								</a>
-								<a href="', $scripturl, '?action=logout;', $context['session_var'], '=', $context['session_id'], '">', $txt['logout'], '</a>
-								<script>document.getElementById("nojs_logout").style.display = "none";</script>
 							</div>
 						</div>
 					</div>

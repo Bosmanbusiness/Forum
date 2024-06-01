@@ -688,7 +688,7 @@ img.sort, .sort {
 	margin-left: 3px;
 	padding: 0 5px;
 	color: #fff;
-	background: #6d90ad;
+	background: var(--tertiary-color);
 	border-radius: 8px;
 }
 .dropmenu li .active .amt, #top_info li .active .amt {
@@ -699,32 +699,29 @@ img.sort, .sort {
 	display: block;
 }
 /* Needed for new PM notifications. */
-.dropmenu li strong {
-	color: #333;
-}
 /* Level 1 active button. */
 .dropmenu a.active, #top_info a.active {
-	color: #fff;
+	color: white;
 	font-weight: bold;
-	border-color: var(--secondary-color);
-	background: white;
+	background: var(--primary-color);
+}
+.dropmenu a {
+	padding: .5rem 1rem;
 }
 /* Level 1 hover effects. */
 .dropmenu > li:hover > a, .dropmenu > li > a:focus,
 #top_info > li:hover > a, #top_info > li > a:focus, #top_info > li > a.open {
-	background: white;
-	color: #fff;
+	background: var(--tertiary-color);
+	color: var(--secondary-color);
 	cursor: pointer;
 	text-decoration: none;
+	padding: .5rem 1rem;
 }
 /* Level 1 active button. */
 
 .dropmenu li a.active:hover, .dropmenu li:hover a.active {
-	background: orange;
-	border: 1px solid #f49a3a;
-	color: #444;
-	box-shadow: 0 5px 5px rgba(255, 255, 255, 0.2) inset;
-	text-shadow: none;
+	background: var(--primary-color);
+	color: white;
 }
 
 a.mobile_user_menu,
@@ -1632,6 +1629,7 @@ tr.windowbg td, tr.bg td, .table_grid tr td {
 
 .generic_menu {
 	margin: 5px 0;
+	display: flex;
 }
 /* Some lovely generic icons.
 ------------------------------------------------- */

@@ -15,7 +15,7 @@
  */
 function template_generic_menu_dropdown_above()
 {
-	global $context, $txt;
+	global $context, $txt, $settings;
 
 	// Which menu are we rendering?
 	$context['cur_menu_id'] = isset($context['cur_menu_id']) ? $context['cur_menu_id'] + 1 : 1;
@@ -26,15 +26,16 @@ function template_generic_menu_dropdown_above()
 	// Add mobile menu as well
 	echo '
 	<a class="mobile_generic_menu_', $context['cur_menu_id'], '">
-		<span class="menu_icon"></span>
-		<span class="text_menu">', sprintf($txt['mobile_generic_menu'], $menu_label), '</span>
+		<img src="', $settings['images_url'] . '/icons/hamburger.svg" />
+		<span class="text_menu">Tabs</span>
 	</a>
 	<div id="genericmenu">
 		<div id="mobile_generic_menu_', $context['cur_menu_id'], '" class="popup_container">
 			<div class="popup_window description">
 				<div class="popup_heading">
-					', sprintf($txt['mobile_generic_menu'], $menu_label), '
-					<a href="javascript:void(0);" class="main_icons hide_popup"></a>
+					<a href="javascript:void(0);" class="hide_popup">
+						<img src="' . $settings['images_url'] . '/icons/cancel.svg" width="36px" />
+					</a>
 				</div>
 				', template_generic_menu($menu_context), '
 			</div>
@@ -78,7 +79,7 @@ function template_generic_menu(&$menu_context)
 
 	echo '
 				<div class="generic_menu">
-					<ul class="dropmenu dropdown_menu_', $context['cur_menu_id'], '">';
+					<ul class="flex dropmenu dropdown_menu_', $context['cur_menu_id'], '">';
 
 	// Main areas first.
 	foreach ($menu_context['sections'] as $section)
@@ -135,6 +136,19 @@ function template_generic_menu(&$menu_context)
 	}
 
 	echo '
+						<li>
+							<a href="', $scripturl, '?action=admin;','">Admin</a>
+						</li>
+						<li>
+							<a href="', $scripturl, '?action=moderate;','">Moderate</a>
+						</li>
+						<li>
+							<a href="', $scripturl, '?action=mlist;','">Members</a>
+						</li>
+						<li>
+							<a href="', $scripturl, '?action=logout;', $context['session_var'], '=', $context['session_id'], '">Log Out</a>
+							<script>document.getElementById("nojs_logout").style.display = "none";</script>
+						</li>
 					</ul><!-- .dropmenu -->
 				</div><!-- .generic_menu -->';
 }
