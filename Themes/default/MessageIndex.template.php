@@ -109,32 +109,13 @@ function template_main()
 
 	if (!$context['no_topic_listing'])
 	{
-		echo '
-	<div class="pagesection">
-		', $context['menu_separator'], '
-		<div class="pagelinks floatleft">
-			<a href="#bot" class="button">', $txt['go_down'], '</a>
-			', $context['page_index'], '
-		</div>
-		', template_button_strip($context['normal_buttons'], 'right');
-
-		// Mobile action buttons (top)
-		if (!empty($context['normal_buttons']))
-			echo '
-		<div class="mobile_buttons floatright">
-			<a class="button mobile_act">', $txt['mobile_action'], '</a>
-		</div>';
-
-		echo '
-	</div>';
-
 		// If Quick Moderation is enabled start the form.
 		if (!empty($context['can_quick_mod']) && $options['display_quick_mod'] > 0 && !empty($context['topics']))
 			echo '
 	<form action="', $scripturl, '?action=quickmod;board=', $context['current_board'], '.', $context['start'], '" method="post" accept-charset="', $context['character_set'], '" class="clear" name="quickModForm" id="quickModForm">';
 
 		echo '
-		<div id="messageindex">';
+		<div id="messageindex" style="margin-top: 1rem;">';
 
 		echo '
 			<div class="title_bar" id="topic_header">';
@@ -306,7 +287,6 @@ function template_main()
 		', template_button_strip($context['normal_buttons'], 'right'), '
 		', $context['menu_separator'], '
 		<div class="pagelinks floatleft">
-			<a href="#main_content_section" class="button" id="bot">', $txt['go_up'], '</a>
 			', $context['page_index'], '
 		</div>';
 

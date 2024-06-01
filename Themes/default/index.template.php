@@ -226,7 +226,7 @@ function template_body_above()
 								</a>
 							</div>
 
-							<div class="flex items-center" style="gap: 1rem">
+							<div class="nav_items">
 								<a href="', $scripturl, '?action=search" class="btn_secondary flex items-center" style="gap: 8px;">
 									<img src="' . $settings['images_url'] . '/icons/search.svg" alt="Search Icon" />
 									', $txt['search'], '
@@ -300,7 +300,7 @@ function template_body_above()
 									</a>
 								</div>
 
-								<div class="flex items-center" style="gap: 16px">
+								<div class="nav_items">
 									<a href="', $scripturl, '?action=search" class="btn_secondary flex items-center" style="gap: 8px;">
 										<img src="' . $settings['images_url'] . '/icons/search.svg" alt="Search Icon" />
 										', $txt['search'], '

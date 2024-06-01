@@ -47,9 +47,8 @@ input, button, select, textarea {
 	color:var(--primary-color);
 	background: white;
 	outline: none;
-	border: 1px solid var(--secondary-color);
-	vertical-align: middle;
-	border-radius: 3px;
+	border: 1px solid var(--tertiary-color);
+	border-radius: 6px;
 	padding: 0.5rem 1rem;
 }
 input:hover, textarea:hover, button:hover, select:hover {
@@ -466,17 +465,17 @@ a img {
 	padding: 2px 0;
 	overflow: hidden;
 	clear: both;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 .pagesection .pagelinks {
-	display: inline-block;
+	display: flex;
+	align-items: center;
 }
 .pages::after, .jump_to::after, .code::after,
 strong[id^='child_list_']::after {
 	content: ": ";
-}
-.pages {
-	font-size: 0.9em;
-	margin: 0 1rem;
 }
 #main_content_section .pagesection {
 	margin: 4px 0 0 0;
@@ -707,19 +706,16 @@ img.sort, .sort {
 .dropmenu a.active, #top_info a.active {
 	color: #fff;
 	font-weight: bold;
-	border-color: #f49a3a;
-	background: linear-gradient(#ffae14, #f5a100);
-	text-shadow: 0 0 2px #000;
+	border-color: var(--secondary-color);
+	background: white;
 }
 /* Level 1 hover effects. */
 .dropmenu > li:hover > a, .dropmenu > li > a:focus,
 #top_info > li:hover > a, #top_info > li > a:focus, #top_info > li > a.open {
-	background: #597b9f;
+	background: white;
 	color: #fff;
 	cursor: pointer;
 	text-decoration: none;
-	box-shadow: 0 4px 4px rgba(255, 255, 255, 0.1) inset;
-	text-shadow: 0 0 2px #000;
 }
 /* Level 1 active button. */
 
@@ -940,27 +936,21 @@ a[class^="mobile_generic_menu_"] {
 /* Styles for the standard button lists.
 ------------------------------------------------------- */
 .buttonlist, .buttonrow, .pagelinks {
-	z-index: 100;
 	padding: 5px 0 5px 0;
 	display: flex;
 	gap: .5rem;
 	justify-content: center;
 	align-items: center;
+	flex-wrap: wrap;
 }
 .button, .quickbuttons > li > a, .inline_mod_check {
 	display: inline-block;
-	padding: 0 8px;
-	color: #444;
-	font-size: 0.7rem;
-	line-height: 2em;
+	padding: .5rem 1rem;
+	color: var(--secondary-color);
 	text-transform: uppercase;
 	cursor: pointer;
-	min-height: calc(2em + 2em * (0.9 - 0.85)); /* "input" font size minus ".button" font size */
-	border: 1px solid;
-	border-color: var(--tertiary-color) #bbb #aaa var(--tertiary-color);
-	border-radius: 3px;
-	box-shadow: 1px 1px 1px rgba(221, 221, 221, 0.57);
-	box-sizing: border-box;
+	border: 1px solid var(--tertiary-color);
+	border-radius: 6px;
 	vertical-align: middle;
 }
 html[lang="el-GR"] .button,
@@ -968,9 +958,7 @@ html[lang="el-GR"] .quickbuttons > li > a,
 html[lang="el-GR"] .inline_mod_check {
 	text-transform: capitalize;
 }
-.pagesection .button {
-	color: #346;
-}
+
 .button:hover, .button:focus,
 .quickbuttons > li:hover > a, .quickbuttons > li > a:focus {
 	color: #222;
@@ -979,7 +967,7 @@ html[lang="el-GR"] .inline_mod_check {
 	text-decoration: none;
 }
 .button:hover, .button:focus {
-	color: #af6700;
+	color: var(--primary-color);
 }
 /* the active one */
 .button.active {
@@ -1192,8 +1180,7 @@ ul li.greeting {
 	float: left;
 	padding-bottom: 3px;
 	line-height: 1.1em;
-	color: #444;
-	text-shadow: 1px 1px 0 #fff;
+	color: var(--secondary-color);
 }
 .navigate_section ul li a, .navigate_section ul li em {
 	padding: 4px 0 4px;
@@ -1205,7 +1192,7 @@ ul li.greeting {
 	margin-top: 8px;
 }
 .navigate_section ul li .dividers {
-	color: #3f6b8c;
+	color: var(--primary-color);
 	font: 83.33%/150% Arial, sans-serif;
 	padding: 0 2px 0 6px;
 }
@@ -4148,6 +4135,13 @@ nav {
 	padding: 1rem 1rem !important;
 }
 
+.nav_items {
+	display: flex;
+	gap: 1rem;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
 .nav_mobile {
 	height: 100%;
 	overflow-x: hidden;
@@ -4240,9 +4234,9 @@ form.login {
 		display: none;
 	}
 
-	.poster{
-		height: 100%;
-		display: block;
+	.nav_items {
+		flex-direction: column;
+		margin-top: 3rem;
 	}
 }
 
