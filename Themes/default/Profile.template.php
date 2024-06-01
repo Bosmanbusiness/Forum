@@ -158,8 +158,8 @@ function template_summary()
 
 	// Display the basic information about the user
 	echo '
-	<div id="profileview" class="roundframe flow_auto noup">
-		<div id="basicinfo">';
+	<div id="profileview" class="window flow_auto flex" style="gap: 1rem;">
+		<div id="basicinfo" class="window" style="border-radius: 6px; margin: 0;">';
 
 	// Are there any custom profile fields for above the name?
 	if (!empty($context['print_custom_fields']['above_member']))
@@ -179,7 +179,8 @@ function template_summary()
 	}
 
 	echo '
-			<div class="username clear">
+			', $context['member']['avatar']['image'],'
+			<div class="username clear" style="margin-top: 1rem; text-align:center;">
 				<h4>';
 
 	if (!empty($context['print_custom_fields']['before_member']))
@@ -200,8 +201,7 @@ function template_summary()
 	echo '
 					<span class="position">', (!empty($context['member']['group']) ? $context['member']['group'] : $context['member']['post_group']), '</span>
 				</h4>
-			</div>
-			', $context['member']['avatar']['image'];
+			</div>';
 
 	// Are there any custom profile fields for below the avatar?
 	if (!empty($context['print_custom_fields']['below_avatar']))
@@ -221,31 +221,22 @@ function template_summary()
 	}
 
 	echo '
-			<ul class="icon_fields clear">';
+			<ul style="margin-top: 1rem;">';
 
 	// Email is only visible if it's your profile or you have the moderate_forum permission
 	if ($context['member']['show_email'])
 		echo '
-				<li><a href="mailto:', $context['member']['email'], '" title="', $context['member']['email'], '" rel="nofollow"><span class="main_icons mail" title="' . $txt['email'] . '"></span></a></li>';
+				<hr />
+				<li>
+					<a href="mailto:', $context['member']['email'], '" title="', $context['member']['email'], '" rel="nofollow" class="btn_primary flex" style="width: 100%;">
+						Send Email
+					</a>
+				</li>';
 
 	// Don't show an icon if they haven't specified a website.
-	if ($context['member']['website']['url'] !== '' && !isset($context['disabled_fields']['website']))
-		echo '
-				<li><a href="', $context['member']['website']['url'], '" title="' . $context['member']['website']['title'] . '" target="_blank" rel="noopener">', ($settings['use_image_buttons'] ? '<span class="main_icons www" title="' . $context['member']['website']['title'] . '"></span>' : $txt['www']), '</a></li>';
-
-	// Are there any custom profile fields as icons?
-	if (!empty($context['print_custom_fields']['icons']))
-	{
-		foreach ($context['print_custom_fields']['icons'] as $field)
-			if (!empty($field['output_html']))
-				echo '
-				<li class="custom_field">', $field['output_html'], '</li>';
-	}
 
 	echo '
-			</ul>
-			<span id="userstatus">
-				', $context['can_send_pm'] ? '<a href="' . $context['member']['online']['href'] . '" title="' . $context['member']['online']['text'] . '" rel="nofollow">' : '', $settings['use_image_buttons'] ? '<span class="' . ($context['member']['online']['is_online'] == 1 ? 'on' : 'off') . '" title="' . $context['member']['online']['text'] . '"></span>' : $context['member']['online']['label'], $context['can_send_pm'] ? '</a>' : '', $settings['use_image_buttons'] ? '<span class="smalltext"> ' . $context['member']['online']['label'] . '</span>' : '';
+			</ul>';
 
 	// Can they add this member as a buddy?
 	if (!empty($context['can_have_buddy']) && !$context['user']['is_owner'])
@@ -258,17 +249,17 @@ function template_summary()
 
 	if (!$context['user']['is_owner'] && $context['can_send_pm'])
 		echo '
-			<a href="', $scripturl, '?action=pm;sa=send;u=', $context['id_member'], '" class="infolinks">', $txt['profile_sendpm_short'], '</a>';
+			<a href="', $scripturl, '?action=pm;sa=send;u=', $context['id_member'], '" class="btn_tertiary flex justify-center" style="width: 100%;">', $txt['profile_sendpm_short'], '</a>';
 
 	echo '
-			<a href="', $scripturl, '?action=profile;area=showposts;u=', $context['id_member'], '" class="infolinks">', $txt['showPosts'], '</a>';
+			<a href="', $scripturl, '?action=profile;area=showposts;u=', $context['id_member'], '"class="btn_tertiary flex justify-center" style="width: 100%;">', $txt['showPosts'], '</a>';
 
 	if ($context['user']['is_owner'] && !empty($modSettings['drafts_post_enabled']))
 		echo '
-			<a href="', $scripturl, '?action=profile;area=showdrafts;u=', $context['id_member'], '" class="infolinks">', $txt['drafts_show'], '</a>';
+			<a href="', $scripturl, '?action=profile;area=showdrafts;u=', $context['id_member'], '" class="btn_tertiary flex justify-center" style="width: 100%">', $txt['drafts_show'], '</a>';
 
 	echo '
-			<a href="', $scripturl, '?action=profile;area=statistics;u=', $context['id_member'], '" class="infolinks">', $txt['statPanel'], '</a>';
+			<a href="', $scripturl, '?action=profile;area=statistics;u=', $context['id_member'], '" class="btn_tertiary flex justify-center" style="width: 100%;">', $txt['statPanel'], '</a>';
 
 	// Are there any custom profile fields for bottom?
 	if (!empty($context['print_custom_fields']['bottom_poster']))
@@ -290,7 +281,7 @@ function template_summary()
 	echo '
 		</div><!-- #basicinfo -->
 
-		<div id="detailedinfo">
+		<div id="detailedinfo" class="window" style="border-radius: 6px; margin: 0;">
 			<dl class="settings">';
 
 	if ($context['user']['is_owner'] || $context['user']['is_admin'])
@@ -1398,7 +1389,7 @@ function template_statPanel()
 			echo '
 					<dt>', $activity['link'], '</dt>
 					<dd>
-						<div class="profile_pie" style="background-position: -', ((int) ($activity['posts_percent'] / 5) * 20), 'px 0;" title="', sprintf($txt['statPanel_topBoards_posts'], $activity['posts'], $activity['total_posts'], $activity['posts_percent']), '">
+						<div class="profile_pie" style="background: conic-gradient(var(--primary-color) -', ((int) ($activity['posts_percent'] / 5) * 20), 'deg, var(--tertiary-color);" title="', sprintf($txt['statPanel_topBoards_posts'], $activity['posts'], $activity['total_posts'], $activity['posts_percent']), '">
 							', sprintf($txt['statPanel_topBoards_posts'], $activity['posts'], $activity['total_posts'], $activity['posts_percent']), '
 						</div>
 						', $activity['percent'], '%

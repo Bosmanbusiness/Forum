@@ -79,7 +79,7 @@ function template_generic_menu(&$menu_context)
 
 	echo '
 				<div class="generic_menu">
-					<ul class="flex dropmenu dropdown_menu_', $context['cur_menu_id'], '">';
+					<ul class="nav_items dropmenu dropdown_menu_', $context['cur_menu_id'], '">';
 
 	// Main areas first.
 	foreach ($menu_context['sections'] as $section)
