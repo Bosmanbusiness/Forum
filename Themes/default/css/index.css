@@ -3,7 +3,7 @@
 :root {
 	--primary-color: #006d5b;
 	--secondary-color: #222222;
-	--tertiary-color: #cccccc;
+	--tertiary-color: #e7e7e7;
 }
 
 body {
@@ -45,7 +45,7 @@ abbr {
 }
 input, button, select, textarea {
 	color:var(--primary-color);
-	background: white;
+	background: var();
 	outline: none;
 	border: 1px solid var(--tertiary-color);
 	border-radius: 6px;
@@ -943,10 +943,11 @@ a[class^="mobile_generic_menu_"] {
 .button, .quickbuttons > li > a, .inline_mod_check {
 	display: inline-block;
 	padding: .5rem 1rem;
-	color: var(--secondary-color);
+	color: white;
+	background: var(--secondary-color);
 	text-transform: uppercase;
 	cursor: pointer;
-	border: 1px solid var(--tertiary-color);
+	transition: .5s ease-in-out;
 	border-radius: 6px;
 	vertical-align: middle;
 }
@@ -958,12 +959,9 @@ html[lang="el-GR"] .inline_mod_check {
 
 .button:hover, .button:focus,
 .quickbuttons > li:hover > a, .quickbuttons > li > a:focus {
-	color: #222;
-	border-color: #aaa var(--tertiary-color) var(--tertiary-color) #bbb;
+	color: white;
 	text-decoration: none;
-}
-.button:hover, .button:focus {
-	color: var(--primary-color);
+	background: var(--primary-color) !important;
 }
 /* the active one */
 .button.active {
@@ -1069,7 +1067,7 @@ h1.forumtitle {
 	flex: 1 1 auto;
 }
 h1.forumtitle a {
-	color: #a85400;
+	color: var(--primary-color);
 }
 /* Float these items to the right */
 #siteslogan, img#smflogo {
@@ -1605,7 +1603,7 @@ tr.windowbg td, tr.bg td, .table_grid tr td {
 }
 
 .errorfile_table {
-	background: #f0f4f7;
+	background: var(--tertiary-color);
 	border-collapse: collapse;
 }
 .errorfile_table .file_line {
@@ -2221,9 +2219,9 @@ dl {
 }
 
 /* Activity by time */
-#activitytime {
+/* #activitytime {
 	margin: 6px 0;
-}
+} */
 .activity_stats {
 	margin: 10px 0;
 }
@@ -2477,7 +2475,7 @@ dl.stats {
 	padding: 0 12px 0 0;
 }
 #personal_messages .capacity_bar {
-	background: #f0f4f7;
+	background: var(--tertiary-color);
 	display: block;
 	margin: 6px 0 0 12px;
 	height: 12px;
@@ -2704,7 +2702,7 @@ dl.addrules dt.floatleft {
 	width: auto;
 	z-index: 99999;
 	margin: 0 auto;
-	padding: 24px;
+	/* padding: 0 24px; */
 }
 .popup_window {
 	top: 15%;
@@ -2736,7 +2734,7 @@ dl.addrules dt.floatleft {
 }
 
 .generic_list_wrapper, .windowbg, .approvebg, .approvebg2 {
-	background: #f0f4f7;
+	background: var(--tertiary-color);
 	margin: 12px 0 0 0;
 	padding: 12px 16px;
 	border: 1px solid var(--tertiary-color);
@@ -2745,20 +2743,20 @@ dl.addrules dt.floatleft {
 }
 /* Here comes the glory... */
 .windowbg:nth-of-type(even), .bg.even {
-	background: #f0f4f7;
+	background: var(--tertiary-color);
 }
 .windowbg:nth-of-type(odd), .bg.odd {
-	background: #fdfdfd;
+	background: var(--tertiary-color);
 }
 
 /* Highlight the target item */
 .windowbg:target {
-	background: #ffffe0;
+	background: white;
 }
 
 /* Add some hover on table rows */
 tr.windowbg:hover {
-	background: #e2eef8;
+	background: white;
 }
 
 /* Special treatment for #forumposts area */
@@ -2903,7 +2901,7 @@ h3 .collapse {
 .info .subject {
 	font-weight: 600;
 	font-size: 1.1em;
-	color: #a85400;
+	color: var(--primary-color);
 }
 .board_stats {
 	width: 15%;
@@ -3398,7 +3396,7 @@ ul.post_options li {
 	font-weight: bold;
 }
 #post_draft_options {
-	background: #fdfdfd;
+	background: var(--tertiary-color);
 	border: 1px solid #aaa;
 	border-left: 1px solid #bbb;
 	border-top: none;
@@ -3573,6 +3571,7 @@ h3.titlebg, h4.titlebg, .titlebg, h3.subbg, h4.subbg, .subbg {
 	overflow: auto;
 	border: 1px solid var(--tertiary-color);
 	padding: 1rem;
+	margin-top: 1rem;
 	border-radius: 1rem;
 }
 .generic_list_wrapper .information div {
@@ -3797,7 +3796,7 @@ h3.profile_hd::before,
 	background-color: #f2f2f2;
 }
 .stripes:nth-of-type(odd) {
-	background-color: #f0f4f7;
+	background-color: var(--tertiary-color);
 }
 .alternative {
 	background-color: #f2f2f2;
@@ -4019,6 +4018,10 @@ img.theme_thumbnail {
 	justify-content: flex-end;
 }
 
+.mt-1 {
+	margin-top: 1rem;
+}
+
 .no_border{
 	border: none;
 }
@@ -4193,7 +4196,10 @@ form.login {
 	margin-top: 1rem;
 }
 
-
+#profileview{
+	display: flex;
+	gap: 1rem;
+}
 
 
 @media screen and (max-width: 720px) {
@@ -4220,6 +4226,33 @@ form.login {
 	.nav_items {
 		flex-direction: column;
 		margin-top: 3rem;
+	}
+
+	.popup_window,
+	#main_menu .popup_window,
+	#genericmenu .popup_window,
+	#adm_submenus .popup_window {
+		padding: 24px;
+	}
+
+	.next {
+		background: url(../images/icons/next.svg);
+		background-color: #006d5b;
+		width: 20px !important;
+		height: 20px !important;
+		display: block;
+	}
+	.previous_page_arrow {
+		background: url(../images/icons/next.svg);
+		transform: rotate(180deg);
+		background-color: #006d5b;
+		width: 20px !important;
+		height: 20px !important;
+		display: block;
+	}
+
+	#profileview {
+		flex-direction: column;
 	}
 }
 

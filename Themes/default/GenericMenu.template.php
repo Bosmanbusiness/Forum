@@ -27,7 +27,7 @@ function template_generic_menu_dropdown_above()
 	echo '
 	<a class="mobile_generic_menu_', $context['cur_menu_id'], '">
 		<img src="', $settings['images_url'] . '/icons/hamburger.svg" />
-		<span class="text_menu">Tabs</span>
+		<span class="text_menu">Tab Options</span>
 	</a>
 	<div id="genericmenu">
 		<div id="mobile_generic_menu_', $context['cur_menu_id'], '" class="popup_container">
@@ -52,7 +52,7 @@ function template_generic_menu_dropdown_above()
 
 	// This is the main table - we need it so we can keep the content to the right of it.
 	echo '
-				<div id="admin_content">';
+				<div id="admin_content" style="margin-top: 3rem;" class="window">';
 
 	// It's possible that some pages have their own tabs they wanna force...
 // 	if (!empty($context['tabs']))
@@ -278,7 +278,7 @@ function template_generic_menu_tabs(&$menu_context)
 
 		echo '
 								<div class="generic_menu">
-									<ul class="dropmenu dropdown_menu_', $context['cur_menu_id'], '_tabs">';
+									<ul class="flex mt-1 dropmenu dropdown_menu_', $context['cur_menu_id'], '_tabs">';
 
 		foreach ($tab_context['tabs'] as $sa => $tab)
 		{

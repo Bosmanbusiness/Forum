@@ -158,8 +158,8 @@ function template_summary()
 
 	// Display the basic information about the user
 	echo '
-	<div id="profileview" class="window flow_auto flex" style="gap: 1rem;">
-		<div id="basicinfo" class="window" style="border-radius: 6px; margin: 0;">';
+	<div id="profileview" class="flow_auto " style="gap: 1rem;">
+		<div id="basicinfo" class="window" style="border-radius: 6px; margin-top: 1rem;">';
 
 	// Are there any custom profile fields for above the name?
 	if (!empty($context['print_custom_fields']['above_member']))
@@ -281,7 +281,7 @@ function template_summary()
 	echo '
 		</div><!-- #basicinfo -->
 
-		<div id="detailedinfo" class="window" style="border-radius: 6px; margin: 0;">
+		<div id="detailedinfo" class="window" style="border-radius: 6px; margin-top: 1rem;">
 			<dl class="settings">';
 
 	if ($context['user']['is_owner'] || $context['user']['is_admin'])
@@ -484,10 +484,7 @@ function template_showPosts()
 			<h3 class="catbg">
 				', (!isset($context['attachments']) && empty($context['is_topics']) ? $txt['showMessages'] : (!empty($context['is_topics']) ? $txt['showTopics'] : $txt['showAttachments'])), !$context['user']['is_owner'] ? ' - ' . $context['member']['name'] : '', '
 			</h3>
-		</div>', !empty($context['page_index']) ? '
-		<div class="pagesection">
-			<div class="pagelinks">' . $context['page_index'] . '</div>
-		</div>' : '';
+		</div>';
 
 	// Are we displaying posts or attachments?
 	if (!isset($context['attachments']))
@@ -645,13 +642,10 @@ function template_showDrafts()
 
 	echo '
 		<div class="cat_bar cat_bar_round">
-			<h3 class="catbg">
+			<h3 class="catbg mt-1">
 				', $txt['drafts'], !$context['user']['is_owner'] ? ' - ' . $context['member']['name'] : '', '
 			</h3>
-		</div>', !empty($context['page_index']) ? '
-		<div class="pagesection">
-			<div class="pagelinks">' . $context['page_index'] . '</div>
-		</div>' : '';
+		</div>';
 
 	// No drafts? Just show an informative message.
 	if (empty($context['drafts']))
