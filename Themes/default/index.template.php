@@ -81,7 +81,7 @@ function template_init()
  */
 function template_html_above()
 {
-	global $context, $scripturl, $txt, $modSettings;
+	global $context, $scripturl, $txt, $modSettings, $settings;
 
 	// Show right to left, the language code, and the character set for ease of translating.
 	echo '<!DOCTYPE html>
@@ -126,6 +126,7 @@ function template_html_above()
 
 	echo '
 	<title>', $context['page_title_html_safe'], '</title>
+	<link rel="shortcut icon" href="', $settings['images_url'] . '/logo/favicon.svg" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">';
 
 	// Content related meta tags, like description, keywords, Open Graph stuff, etc...
