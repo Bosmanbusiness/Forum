@@ -142,6 +142,10 @@ strong, .strong {
 	font-weight: bold;
 	color: var(--secondary-color);
 }
+.cat_bar{
+	display: flex;
+	flex-direction: column-reverse;
+}
 .cat_bar strong {
 	color: #fff;
 }

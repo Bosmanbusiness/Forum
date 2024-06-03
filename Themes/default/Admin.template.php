@@ -18,28 +18,14 @@ function template_admin()
 	global $context, $scripturl, $txt, $modSettings;
 
 	// Is there an update available?
-	echo '
-						<div id="update_section"></div>';
 
-	echo '
-						<div id="admin_main_section">';
 
 	// Display the "live news" from simplemachines.org.
-	echo '
-							<div id="live_news" class="floatleft">
-								<div class="cat_bar">
-									<h3 class="catbg">
-										<a href="', $scripturl, '?action=helpadmin;help=live_news" onclick="return reqOverlayDiv(this.href);" class="help"><span class="main_icons help" title="', $txt['help'], '"></span></a> ', $txt['live'], '
-									</h3>
-								</div>
-								<div class="windowbg nopadding">
-									<div id="smfAnnouncements">', $txt['smf_news_cant_connect'], '</div>
-								</div>
-							</div>';
+
 
 	// Show the user version information from their server.
 	echo '
-							<div id="support_info" class="floatright">
+							<div id="support_info" class="mt-1" style="width: 100%;">
 								<div class="cat_bar">
 									<h3 class="catbg">
 										<a href="', $scripturl, '?action=admin;area=credits">', $txt['support_title'], '</a>
