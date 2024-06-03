@@ -254,7 +254,7 @@ function template_kick_guest()
 	echo '
 			<div class="cat_bar">
 				<h3 class="catbg">
-					<span class="main_icons login"></span> ', $txt['login'], '
+				 ', $txt['login'], '
 				</h3>
 			</div>
 			<div class="roundframe">
@@ -352,10 +352,10 @@ function template_admin_login()
 	// Since this should redirect to whatever they were doing, send all the get data.
 	echo '
 	<form action="', !empty($modSettings['force_ssl']) ? strtr($scripturl, array('http://' => 'https://')) : $scripturl, $context['get_data'], '" method="post" accept-charset="', $context['character_set'], '" name="frmLogin" id="frmLogin">
-		<div class="login" id="admin_login">
+		<div class="login window" id="admin_login">
 			<div class="cat_bar">
 				<h3 class="catbg">
-					<span class="main_icons login"></span> ', $txt['login'], '
+					', $txt['login'], '
 				</h3>
 			</div>
 			<div class="roundframe centertext">';
@@ -370,7 +370,7 @@ function template_admin_login()
 				<a href="', $scripturl, '?action=helpadmin;help=securityDisable_why" onclick="return reqOverlayDiv(this.href);" class="help"><span class="main_icons help" title="', $txt['help'], '"></span></a><br>
 				<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
 				<input type="hidden" name="', $context['admin-login_token_var'], '" value="', $context['admin-login_token'], '">
-				<input type="submit" value="', $txt['login'], '" class="button">';
+				<input type="submit" value="', $txt['login'], '" class="button mt-1">';
 
 	// Make sure to output all the old post data.
 	echo $context['post_data'], '
