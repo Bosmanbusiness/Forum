@@ -44,12 +44,12 @@ function template_registration_agreement()
 	// Age restriction in effect?
 	if ($context['show_coppa'])
 		echo '
-				<input type="submit" name="accept_agreement" value="', $context['coppa_agree_above'], '" class="btn_primary"><br>
+				<input type="submit" name="accept_agreement" value="', $context['coppa_agree_above'], '" class="button"><br>
 				<br>
-				<input type="submit" name="accept_agreement_coppa" value="', $context['coppa_agree_below'], '" class="btn_primary">';
+				<input type="submit" name="accept_agreement_coppa" value="', $context['coppa_agree_below'], '" class="button">';
 	else
 		echo '
-				<input type="submit" name="accept_agreement" value="', $context['agree'], '" class="btn_primary" style="margin: 0 auto;" />';
+				<input type="submit" name="accept_agreement" value="', $context['agree'], '" class="button" />';
 
 	echo '
 				<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
@@ -291,16 +291,16 @@ function template_registration_form()
 				</fieldset>
 			</div><!-- .roundframe -->';
 
-	if ($context['visual_verification'])
-		echo '
-			<div class="title_bar">
-				<h3 class="titlebg">', $txt['verification'], '</h3>
-			</div>
-			<div class="roundframe noup">
-				<fieldset class="centertext">
-					', template_control_verification($context['visual_verification_id'], 'all'), '
-				</fieldset>
-			</div>';
+	// if ($context['visual_verification'])
+	// 	echo '
+	// 		<div class="title_bar">
+	// 			<h3 class="titlebg">', $txt['verification'], '</h3>
+	// 		</div>
+	// 		<div class="roundframe noup">
+	// 			<fieldset class="centertext">
+	// 				', template_control_verification($context['visual_verification_id'], 'all'), '
+	// 			</fieldset>
+	// 		</div>';
 
 	echo '
 			<div id="confirm_buttons" class="flow_auto">';
@@ -308,12 +308,12 @@ function template_registration_form()
 	// Age restriction in effect?
 	if (empty($context['agree']) && $context['show_coppa'])
 		echo '
-				<input type="submit" name="accept_agreement" value="', $context['coppa_agree_above'], '" class="btn_primary"><br>
+				<input type="submit" name="accept_agreement" value="', $context['coppa_agree_above'], '" class="button"><br>
 				<br>
-				<input type="submit" name="accept_agreement_coppa" value="', $context['coppa_agree_below'], '" class="btn_primary">';
+				<input type="submit" name="accept_agreement_coppa" value="', $context['coppa_agree_below'], '" class="button">';
 	else
 		echo '
-				<input type="submit" name="regSubmit" value="', $txt['register'], '" tabindex="', $context['tabindex']++, '" class="btn_primary" onclick="this.disabled = true;form.submit();">';
+				<input type="submit" name="regSubmit" value="', $txt['register'], '" tabindex="', $context['tabindex']++, '" class="button" onclick="this.disabled = true;form.submit();">';
 
 	echo '
 			</div>
@@ -438,49 +438,49 @@ function template_coppa_form()
 /**
  * Show a window containing the spoken verification code.
  */
-// function template_verification_sound()
-// {
-// 	global $context, $settings, $txt, $modSettings;
+function template_verification_sound()
+{
+	global $context, $settings, $txt, $modSettings;
 
-// 	echo '<!DOCTYPE html>
-// <html', $context['right_to_left'] ? ' dir="rtl"' : '', '>
-// 	<head>
-// 		<meta charset="', $context['character_set'], '">
-// 		<title>', $txt['visual_verification_sound'], '</title>
-// 		<meta name="robots" content="noindex">
-// 		', template_css(), '
-// 		<style>';
+	echo '<!DOCTYPE html>
+<html', $context['right_to_left'] ? ' dir="rtl"' : '', '>
+	<head>
+		<meta charset="', $context['character_set'], '">
+		<title>', $txt['visual_verification_sound'], '</title>
+		<meta name="robots" content="noindex">
+		', template_css(), '
+		<style>';
 
-// 	// Just show the help text and a "close window" link.
-// 	echo '
-// 		</style>
-// 	</head>
-// 	<body style="margin: 1ex;">
-// 		<div class="windowbg description" style="text-align: center;">';
+	// Just show the help text and a "close window" link.
+	echo '
+		</style>
+	</head>
+	<body style="margin: 1ex;">
+		<div class="windowbg description" style="text-align: center;">';
 
-// 	if (isBrowser('is_ie') || isBrowser('is_ie11'))
-// 		echo '
-// 			<object classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" type="audio/x-wav">
-// 				<param name="AutoStart" value="1">
-// 				<param name="FileName" value="', $context['verification_sound_href'], '">
-// 			</object>';
-// 	else
-// 		echo '
-// 			<audio src="', $context['verification_sound_href'], '" controls>
-// 				<object type="audio/x-wav" data="', $context['verification_sound_href'], '">
-// 					<a href="', $context['verification_sound_href'], '" rel="nofollow">', $context['verification_sound_href'], '</a>
-// 				</object>
-// 			</audio>';
+	if (isBrowser('is_ie') || isBrowser('is_ie11'))
+		echo '
+			<object classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" type="audio/x-wav">
+				<param name="AutoStart" value="1">
+				<param name="FileName" value="', $context['verification_sound_href'], '">
+			</object>';
+	else
+		echo '
+			<audio src="', $context['verification_sound_href'], '" controls>
+				<object type="audio/x-wav" data="', $context['verification_sound_href'], '">
+					<a href="', $context['verification_sound_href'], '" rel="nofollow">', $context['verification_sound_href'], '</a>
+				</object>
+			</audio>';
 
-// 	echo '
-// 			<br>
-// 			<a href="', $context['verification_sound_href'], ';sound" rel="nofollow">', $txt['visual_verification_sound_again'], '</a><br>
-// 			<a href="', $context['verification_sound_href'], '" rel="nofollow">', $txt['visual_verification_sound_direct'], '</a><br><br>
-// 			<a href="javascript:self.close();">', $txt['visual_verification_sound_close'], '</a><br>
-// 		</div><!-- .description -->
-// 	</body>
-// </html>';
-// }
+	echo '
+			<br>
+			<a href="', $context['verification_sound_href'], ';sound" rel="nofollow">', $txt['visual_verification_sound_again'], '</a><br>
+			<a href="', $context['verification_sound_href'], '" rel="nofollow">', $txt['visual_verification_sound_direct'], '</a><br><br>
+			<a href="javascript:self.close();">', $txt['visual_verification_sound_close'], '</a><br>
+		</div><!-- .description -->
+	</body>
+</html>';
+}
 
 /**
  * The template for the form allowing an admin to register a user from the admin center.

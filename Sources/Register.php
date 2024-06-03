@@ -218,24 +218,24 @@ function Register($reg_errors = array())
 	}
 
 	// Generate a visual verification code to make sure the user is no bot.
-	if (!empty($modSettings['reg_verification']))
-	{
-		require_once($sourcedir . '/Subs-Editor.php');
-		$verificationOptions = array(
-			'id' => 'register',
-		);
-		$context['visual_verification'] = create_control_verification($verificationOptions);
-		$context['visual_verification_id'] = $verificationOptions['id'];
-	}
-	// Otherwise we have nothing to show.
-	else
-		$context['visual_verification'] = false;
+	// if (!empty($modSettings['reg_verification']))
+	// {
+	// 	require_once($sourcedir . '/Subs-Editor.php');
+	// 	$verificationOptions = array(
+	// 		'id' => 'register',
+	// 	);
+	// 	$context['visual_verification'] = create_control_verification($verificationOptions);
+	// 	$context['visual_verification_id'] = $verificationOptions['id'];
+	// }
+	// // Otherwise we have nothing to show.
+	// else
+	// 	$context['visual_verification'] = false;
 
-	$context += array(
-		'username' => isset($_POST['user']) ? $smcFunc['htmlspecialchars']($_POST['user']) : '',
-		'email' => isset($_POST['email']) ? $smcFunc['htmlspecialchars']($_POST['email']) : '',
-		'notify_announcements' => !empty($_POST['notify_announcements']) ? 1 : 0,
-	);
+	// $context += array(
+	// 	'username' => isset($_POST['user']) ? $smcFunc['htmlspecialchars']($_POST['user']) : '',
+	// 	'email' => isset($_POST['email']) ? $smcFunc['htmlspecialchars']($_POST['email']) : '',
+	// 	'notify_announcements' => !empty($_POST['notify_announcements']) ? 1 : 0,
+	// );
 
 	// Were there any errors?
 	$context['registration_errors'] = array();
@@ -297,21 +297,21 @@ function Register2()
 	}
 
 	// Check whether the visual verification code was entered correctly.
-	if (!empty($modSettings['reg_verification']))
-	{
-		require_once($sourcedir . '/Subs-Editor.php');
-		$verificationOptions = array(
-			'id' => 'register',
-		);
-		$context['visual_verification'] = create_control_verification($verificationOptions, true);
+	// if (!empty($modSettings['reg_verification']))
+	// {
+	// 	require_once($sourcedir . '/Subs-Editor.php');
+	// 	$verificationOptions = array(
+	// 		'id' => 'register',
+	// 	);
+	// 	$context['visual_verification'] = create_control_verification($verificationOptions, true);
 
-		if (is_array($context['visual_verification']))
-		{
-			loadLanguage('Errors');
-			foreach ($context['visual_verification'] as $error)
-				$reg_errors[] = $txt['error_' . $error];
-		}
-	}
+	// 	if (is_array($context['visual_verification']))
+	// 	{
+	// 		loadLanguage('Errors');
+	// 		foreach ($context['visual_verification'] as $error)
+	// 			$reg_errors[] = $txt['error_' . $error];
+	// 	}
+	// }
 
 	array_walk_recursive(
 		$_POST,
@@ -830,70 +830,70 @@ function CoppaForm()
 /**
  * Show the verification code or let it be heard.
  */
-function VerificationCode()
-{
-	global $sourcedir, $context, $scripturl;
+// function VerificationCode()
+// {
+// 	global $sourcedir, $context, $scripturl;
 
-	$verification_id = isset($_GET['vid']) ? $_GET['vid'] : '';
-	$code = $verification_id && isset($_SESSION[$verification_id . '_vv']) ? $_SESSION[$verification_id . '_vv']['code'] : (isset($_SESSION['visual_verification_code']) ? $_SESSION['visual_verification_code'] : '');
+// 	$verification_id = isset($_GET['vid']) ? $_GET['vid'] : '';
+// 	$code = $verification_id && isset($_SESSION[$verification_id . '_vv']) ? $_SESSION[$verification_id . '_vv']['code'] : (isset($_SESSION['visual_verification_code']) ? $_SESSION['visual_verification_code'] : '');
 
-	// Somehow no code was generated or the session was lost.
-	if (empty($code))
-	{
-		header('content-type: image/gif');
-		die("\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\x00\x00\x00\x00\x00\x00\x00\x00\x21\xF9\x04\x01\x00\x00\x00\x00\x2C\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02\x44\x01\x00\x3B");
-	}
+// 	// Somehow no code was generated or the session was lost.
+// 	if (empty($code))
+// 	{
+// 		header('content-type: image/gif');
+// 		die("\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\x00\x00\x00\x00\x00\x00\x00\x00\x21\xF9\x04\x01\x00\x00\x00\x00\x2C\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02\x44\x01\x00\x3B");
+// 	}
 
-	// Show a window that will play the verification code.
-	elseif (isset($_REQUEST['sound']))
-	{
-		loadLanguage('Login');
-		loadTemplate('Register');
+// 	// Show a window that will play the verification code.
+// 	elseif (isset($_REQUEST['sound']))
+// 	{
+// 		loadLanguage('Login');
+// 		loadTemplate('Register');
 
-		$context['verification_sound_href'] = $scripturl . '?action=verificationcode;rand=' . md5(mt_rand()) . ($verification_id ? ';vid=' . $verification_id : '') . ';format=.wav';
-		$context['sub_template'] = 'verification_sound';
-		$context['template_layers'] = array();
+// 		$context['verification_sound_href'] = $scripturl . '?action=verificationcode;rand=' . md5(mt_rand()) . ($verification_id ? ';vid=' . $verification_id : '') . ';format=.wav';
+// 		$context['sub_template'] = 'verification_sound';
+// 		$context['template_layers'] = array();
 
-		obExit();
-	}
+// 		obExit();
+// 	}
 
-	// If we have GD, try the nice code.
-	elseif (empty($_REQUEST['format']))
-	{
-		require_once($sourcedir . '/Subs-Graphics.php');
+// 	// If we have GD, try the nice code.
+// 	elseif (empty($_REQUEST['format']))
+// 	{
+// 		require_once($sourcedir . '/Subs-Graphics.php');
 
-		if (in_array('gd', get_loaded_extensions()) && !showCodeImage($code))
-			send_http_status(400);
+// 		if (in_array('gd', get_loaded_extensions()) && !showCodeImage($code))
+// 			send_http_status(400);
 
-		// Otherwise just show a pre-defined letter.
-		elseif (isset($_REQUEST['letter']))
-		{
-			$_REQUEST['letter'] = (int) $_REQUEST['letter'];
-			if ($_REQUEST['letter'] > 0 && $_REQUEST['letter'] <= strlen($code) && !showLetterImage(strtolower($code[$_REQUEST['letter'] - 1])))
-			{
-				header('content-type: image/gif');
-				die("\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\x00\x00\x00\x00\x00\x00\x00\x00\x21\xF9\x04\x01\x00\x00\x00\x00\x2C\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02\x44\x01\x00\x3B");
-			}
-		}
-		// You must be up to no good.
-		else
-		{
-			header('content-type: image/gif');
-			die("\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\x00\x00\x00\x00\x00\x00\x00\x00\x21\xF9\x04\x01\x00\x00\x00\x00\x2C\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02\x44\x01\x00\x3B");
-		}
-	}
+// 		// Otherwise just show a pre-defined letter.
+// 		elseif (isset($_REQUEST['letter']))
+// 		{
+// 			$_REQUEST['letter'] = (int) $_REQUEST['letter'];
+// 			if ($_REQUEST['letter'] > 0 && $_REQUEST['letter'] <= strlen($code) && !showLetterImage(strtolower($code[$_REQUEST['letter'] - 1])))
+// 			{
+// 				header('content-type: image/gif');
+// 				die("\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\x00\x00\x00\x00\x00\x00\x00\x00\x21\xF9\x04\x01\x00\x00\x00\x00\x2C\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02\x44\x01\x00\x3B");
+// 			}
+// 		}
+// 		// You must be up to no good.
+// 		else
+// 		{
+// 			header('content-type: image/gif');
+// 			die("\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\x00\x00\x00\x00\x00\x00\x00\x00\x21\xF9\x04\x01\x00\x00\x00\x00\x2C\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02\x44\x01\x00\x3B");
+// 		}
+// 	}
 
-	elseif ($_REQUEST['format'] === '.wav')
-	{
-		require_once($sourcedir . '/Subs-Sound.php');
+// 	elseif ($_REQUEST['format'] === '.wav')
+// 	{
+// 		require_once($sourcedir . '/Subs-Sound.php');
 
-		if (!createWaveFile($code))
-			send_http_status(400);
-	}
+// 		if (!createWaveFile($code))
+// 			send_http_status(400);
+// 	}
 
-	// We all die one day...
-	die();
-}
+// 	// We all die one day...
+// 	die();
+// }
 
 /**
  * See if a username already exists.
