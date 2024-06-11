@@ -253,9 +253,7 @@ function template_kick_guest()
 	// And now the login information.
 	echo '
 			<div class="cat_bar">
-				<h3 class="catbg">
-				 ', $txt['login'], '
-				</h3>
+
 			</div>
 			<div class="roundframe">
 				<dl>

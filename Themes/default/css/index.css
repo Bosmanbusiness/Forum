@@ -1497,7 +1497,7 @@ fieldset.merge_options {
 /* Styles for the login areas.
 ------------------------------------------------------- */
 .login {
-	width: 540px !important;
+	/* width: 540px !important; */
 	/* max-width: 100%; */
 	margin: 0 auto;
 }
@@ -1630,26 +1630,20 @@ tr.windowbg td, tr.bg td, .table_grid tr td {
 ------------------------------------------------- */
 .main_icons::before {
 	content: "";
-	width: 16px;
-	height: 16px;
+	width: 20px;
+	height: 20px;
 	display: inline-block;
-	background: url(../images/icons/main_icons_sprite.png) no-repeat -5px -5px / 260px auto;
+	background: url(../images/icons/main_icons_sprite_hd.png) no-repeat -5px -5px / 260px auto;
 	vertical-align: middle;
 }
 .main_icons.alerts::before {
-	background: url(../images/icons/bell.png);
-	background-size: 16px;
+	background: url(../images/icons/bell_hd.png);
+	background-size: 20px;
 }
 /* Load better icons for higher resolution screens */
 @media
 	screen and (-webkit-min-device-pixel-ratio: 1.66),
 	screen and (min-resolution: 160dpi) {
-	.main_icons::before {
-		background-image: url(../images/icons/main_icons_sprite_hd.png);
-	}
-	.main_icons.alerts::before {
-		background-image: url(../images/icons/bell_hd.png);
-	}
 }
 
 /* Small fix for topics */
@@ -2710,6 +2704,7 @@ dl.addrules dt.floatleft {
 }
 .popup_window {
 	top: 15%;
+	padding: 1rem;
 	width: 50%;
 	border-radius: 12px;
 	border: 1px solid var(--secondary-color);
