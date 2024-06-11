@@ -246,11 +246,7 @@ function template_main()
 		<div class="pagesection items-center">
 			', template_button_strip($context['normal_buttons'], 'right'), '
 			', $context['menu_separator'], '
-			<div class="flex items-center floatleft">
-				<a href="#main_content_section" class="btn_tertiary" id="bot">
-					<img width="24px" src="' . $settings['images_url'] . '/icons/arrow_up.svg" alt="Go Up button" />
-					', $txt['go_up'], '
-				</a>
+			<div class="flex items-center floatleft" style="gap:1rem;">
 				', $context['page_index'], '
 			</div>';
 
@@ -701,7 +697,7 @@ function template_single_post($message)
 
 			echo '
 										<div class="attachments_bot">
-											<a href="' . $attachment['href'] . '"><img src="' . $settings['images_url'] . '/icons/clip.png" class="centericon" alt="*">&nbsp;' . $attachment['name'] . '</a> ';
+											<a href="' . $attachment['href'] . '"><img src="' . $settings['images_url'] . '/icons/clip.png" class="centericon" alt="*" width="20px">&nbsp;' . $attachment['name'] . '</a> ';
 
 			if (!$attachment['is_approved'] && $context['can_approve'])
 				echo '

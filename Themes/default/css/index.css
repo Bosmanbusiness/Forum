@@ -948,7 +948,7 @@ a[class^="mobile_generic_menu_"] {
 	display: inline-block;
 	padding: .5rem 1rem;
 	color: white;
-	background: var(--secondary-color);
+	/* background: var(--secondary-color); */
 	text-transform: uppercase;
 	cursor: pointer;
 	transition: .5s ease-in-out;
@@ -1859,8 +1859,11 @@ tr.windowbg td, tr.bg td, .table_grid tr td {
 .main_icons.personal_message::before {
 	background-position: -83px -161px;
 }
-.main_icons.permissions::before, .main_icons.login::before {
+.main_icons.permissions::before {
 	background-position: -109px -161px;
+}
+.main_icons.login::before{
+	display: none;
 }
 .main_icons.paid::before {
 	background-position: -135px -161px;
@@ -3476,7 +3479,6 @@ ul.post_options li {
 	overflow: visible;
 	border: none;
 	box-shadow: none;
-	position: absolute;
 	bottom: 1rem;
 }
 .smflikebutton {
@@ -3524,7 +3526,6 @@ ul.post_options li {
 /* General Classes */
 /* Cat_bar / catbg */
 .catbg {
-	display: flex;
 	gap: 1rem;
 	align-items: center;
 }
