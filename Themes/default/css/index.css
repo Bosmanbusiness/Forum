@@ -4177,16 +4177,13 @@ form.login {
 
 .recent_posts_list {
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 1rem;
+	grid-template-columns: repeat(1, 1fr);
 	margin: 1rem 0;
 }
 
 .recent_post_item {
-	padding: 1rem;
-	border: 1px solid var(--tertiary-color);
-	width: 100%;
-	border-radius: 1.2rem;
+	background-color: #d6e9ff;
+	padding: 0;
 }
 
 .window {

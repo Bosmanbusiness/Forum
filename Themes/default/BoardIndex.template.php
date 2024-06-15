@@ -79,8 +79,9 @@ function template_main()
 						<li class="boards_list">',template_bi_board_info($board),',</li>
 					';
 				}
-				echo '</ul>';
 
+				echo '
+				</ul>';
 		/* Each board in each category's boards has:
 		new (is it new?), id, name, description, moderators (see below), link_moderators (just a list.),
 		children (see below.), link_children (easier to use.), children_new (are they new?),
@@ -89,7 +90,13 @@ function template_main()
 		echo '
 			</div><!-- #category_[id]_boards -->';
 	}
+	echo '
+	<p>Stats: <br />
+	', $context['show_who'] ? '<a href="' . $scripturl . '?action=who">' : '', '<strong>', $txt['online'], ': </strong>', comma_format($context['num_guests']), ' ', $context['num_guests'] == 1 ? $txt['guest'] : $txt['guests'], ', ', comma_format($context['num_users_online']), ' ', $context['num_users_online'] == 1 ? $txt['user'] : $txt['users'];
+	echo $context['show_who'] ? '</a>' : '', '
 
+	&nbsp;-&nbsp;', $txt['most_online_today'], ': <strong>', comma_format($modSettings['mostOnlineToday']), '</strong>&nbsp;-&nbsp;
+	', $txt['most_online_ever'], ': ', comma_format($modSettings['mostOnline']), ' (', timeformat($modSettings['mostDate']), ')<br>';
 	echo '
 	</div><!-- #boardindex_table -->';
 }
@@ -327,23 +334,26 @@ function template_ic_block_recent()
 	elseif (!empty($context['latest_posts']))
 	{
 		echo'
-			<ul class="recent_posts_list">';
+			<ul class="recent_posts_list divide">';
 
 		/* Each post in latest_posts has: 
 		board (with an id, name, and link.), topic (the topic's id.), poster (with id, name, and link.),
 			subject, short_subject (shortened with...), time, link, and href. */
+		// 	<li class="recent_post_item">
+		// 	<span class="btn_tertiary">
+		// 		<img src="' . $settings['images_url'] . '/icons/account.svg" />
+		// 		', $post['poster']['link'], '
+		// 	</span>
+		// 	<strong style="font-size: 1.5rem; margin: 1rem 0; display:block;">', $post['link'], '</strong>
+		// 	<div>
+		// 		<span>in: ', $post['board']['link'], '</span>
+		// 	</div>
+		// 	', $post['time'], '
+		// </li>';
 		foreach ($context['latest_posts'] as $post)
 			echo '
 				<li class="recent_post_item">
-					<span class="btn_tertiary">
-						<img src="' . $settings['images_url'] . '/icons/account.svg" />
-						', $post['poster']['link'], '
-					</span>
-					<strong style="font-size: 1.5rem; margin: 1rem 0; display:block;">', $post['link'], '</strong>
-					<div>
-						<span>in: ', $post['board']['link'], '</span>
-					</div>
-					', $post['time'], '
+					<p style="font-size: 1rem; display:block; text-align:center;">', $post['link'], '</p>
 				</li>';
 		echo '
 				</ul>';
