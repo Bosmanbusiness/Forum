@@ -56,7 +56,8 @@ function template_main()
 	global $context, $txt, $scripturl;
 
 	echo '
-	<div id="boardindex_table" class="boardindex_table">';
+	<div id="boardindex_table" class="boardindex_table divide window">
+	<h3 style="text-align:center; margin-bottom:1rem;">Categories & Boards</h3>';
 
 	/* Each category in categories is made up of:
 	id, href, link, name, is_collapsed (is it collapsed?), can_collapse (is it okay if it is?),
@@ -69,63 +70,24 @@ function template_main()
 			continue;
 
 		echo '
-		<div class="main_container">
 			<div class="cat_bar ', $category['is_collapsed'] ? 'collapsed' : '', '" id="category_', $category['id'], '">
-				<h3 class="catbg">';
-
-		// If this category even can collapse, show a link to collapse it.
-		if ($category['can_collapse'])
-			echo '
-					<span id="category_', $category['id'], '_upshrink" class="', $category['is_collapsed'] ? 'toggle_down' : 'toggle_up', ' floatright" data-collapsed="', (int) $category['is_collapsed'], '" title="', !$category['is_collapsed'] ? $txt['hide_category'] : $txt['show_category'], '" style="display: none;"></span>';
-
-		echo '
-					', $category['link'], '
-				
-			</div>
-			<div id="category_', $category['id'], '_boards" ', (!empty($category['css_class']) ? ('class="' . $category['css_class'] . '"') : ''), $category['is_collapsed'] ? ' style="display: none;"' : '', '>';
+				<h3 class="catbg">', $category['link'],':
+				<ul>';
+				foreach ($category['boards'] as $board)
+				{			
+					echo '
+						<li class="boards_list">',template_bi_board_info($board),',</li>
+					';
+				}
+				echo '</ul>';
 
 		/* Each board in each category's boards has:
 		new (is it new?), id, name, description, moderators (see below), link_moderators (just a list.),
 		children (see below.), link_children (easier to use.), children_new (are they new?),
 		topics (# of), posts (# of), link, href, and last_post. (see below.) */
 
-
-		foreach ($category['boards'] as $board)
-		{
-			echo '
-				<div id="board_', $board['id'], '" class="up_contain ', (!empty($board['css_class']) ? $board['css_class'] : ''), '">
-					<div class="board_icon">
-						', function_exists('template_bi_' . $board['type'] . '_icon') ? call_user_func('template_bi_' . $board['type'] . '_icon', $board) : template_bi_board_icon($board), '
-					</div>
-					<div class="info">
-						', function_exists('template_bi_' . $board['type'] . '_info') ? call_user_func('template_bi_' . $board['type'] . '_info', $board) : template_bi_board_info($board), '
-					</div><!-- .info -->';
-
-			// Show some basic information about the number of posts, etc.
-			echo '
-					<div class="board_stats">
-						', function_exists('template_bi_' . $board['type'] . '_stats') ? call_user_func('template_bi_' . $board['type'] . '_stats', $board) : template_bi_board_stats($board), '
-					</div>';
-
-			// Show the last post if there is one.
-			echo'
-					<div class="lastpost">
-						', function_exists('template_bi_' . $board['type'] . '_lastpost') ? call_user_func('template_bi_' . $board['type'] . '_lastpost', $board) : template_bi_board_lastpost($board), '
-					</div>';
-
-			// Won't somebody think of the children!
-			if (function_exists('template_bi_' . $board['type'] . '_children'))
-				call_user_func('template_bi_' . $board['type'] . '_children', $board);
-			else
-				template_bi_board_children($board);
-
-			echo '
-				</div><!-- #board_[id] -->';
-		}
-
 		echo '
-			</div><!-- #category_[id]_boards -->
-		</div><!-- .main_container -->';
+			</div><!-- #category_[id]_boards -->';
 	}
 
 	echo '

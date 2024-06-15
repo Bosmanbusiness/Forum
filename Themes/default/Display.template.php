@@ -61,9 +61,9 @@ function template_main()
 	}
 
 	// Show the anchor for the top and for the first message. If the first message is new, say so.
-	echo '
-		</div><!-- #display_head -->
-		', $context['first_new_message'] ? '<a id="new"></a>' : '';
+	// echo '
+	// 	</div><!-- #display_head -->
+	// 	', $context['first_new_message'] ? '<a id="new"></a>' : '';
 
 	// Is this topic also a poll?
 	if ($context['is_poll'])
@@ -462,138 +462,21 @@ function template_single_post($message)
 					', $message['id'] != $context['first_message'] ? '
 					' . ($message['first_new'] ? '<a id="new"></a>' : '') : '', '
 					<div class="post_wrapper">';
-
-	// Show information about the poster of this message.
-	echo '
-						<div class="poster">';
-
-	// Are there any custom fields above the member name?
-	if (!empty($message['custom_fields']['above_member']))
-	{
-		echo '
-							<div class="custom_fields_above_member">
-								<ul class="nolist">';
-
-		foreach ($message['custom_fields']['above_member'] as $custom)
-			echo '
-									<li class="custom ', $custom['col_name'], '">', $custom['value'], '</li>';
-
-		echo '
-								</ul>
-							</div>';
-	} 
-	echo'
-							<ul class="user_info">';
-	// Show the user's avatar.
-	if (!empty($modSettings['show_user_images']) && empty($options['show_no_avatars']) && !empty($message['member']['avatar']['image']))
-		echo '
-								<li class="poster_avatar">
-									<a href="', $message['member']['href'], '">', $message['member']['avatar']['image'], '
-									', $message['member']['link'],'</a>
-								</li>';
-	// Show the member's custom title, if they have one.
-	if (!empty($message['member']['title']))
-		echo '
-		<li class="title" style="text-align: center;">', $message['member']['title'], '</li>';
-
-	// Show the member's primary group (like 'Administrator') if they have one.
-	if (!empty($message['member']['group']))
-		echo '
-								<li style="text-align: center;">', $message['member']['group'], '</li>
-								<hr />
-								';
-
-
-
-	// Are there any custom fields below the avatar?
-	if (!empty($message['custom_fields']['below_avatar']))
-		foreach ($message['custom_fields']['below_avatar'] as $custom)
-			echo '
-								<li class="custom ', $custom['col_name'], '">', $custom['value'], '</li>';
-
-	// Don't show these things for guests.
-	if (!$message['member']['is_guest'])
-	{
-		// Show the post group icons
-		// echo '
-		// 						<li class="icons">', $message['member']['group_icons'], '</li>';
-
-		// Show the post group if and only if they have no other group or the option is on, and they are in a post group.
-		if ((empty($modSettings['hide_post_group']) || empty($message['member']['group'])) && !empty($message['member']['post_group']))
-			echo '
-						
-								<li class="flex justify-between">
-									<span>', $message['member']['post_group'], '</span>
-									<span>', $txt['member_postcount'], ': ', $message['member']['posts'], '</span>
-								</li>';
-
-		// Show their personal text?
-		if (!empty($modSettings['show_blurb']) && !empty($message['member']['blurb']))
-			echo '
-								<li class="blurb">Blurb: ', $message['member']['blurb'], '</li>';
-
-		// Any custom fields to show as icons?
-
-		// Show the website and email address buttons.
-		if ($message['member']['show_profile_buttons'])
-		{
-			echo '
-								<li class="profile">
-									<ol class="profile_icons">';
-
-			// Don't show an icon if they haven't specified a website.
-			if (!empty($message['member']['website']['url']) && !isset($context['disabled_fields']['website']))
-				echo '
-										<li><a href="', $message['member']['website']['url'], '" title="' . $message['member']['website']['title'] . '" target="_blank" rel="noopener">', ($settings['use_image_buttons'] ? '<span class="main_icons www centericon" title="' . $message['member']['website']['title'] . '"></span>' : $txt['www']), '</a></li>';
-
-			// Since we know this person isn't a guest, you *can* message them.
-			if ($context['can_send_pm'])
-				echo '
-										<li>
-										<a href="', $scripturl, '?action=pm;sa=send;u=', $message['member']['id'], '" title="', $message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline'], '" class="btn_primary" style="width: 100%; margin-top: 12px;">
-											<img src="', $settings['images_url'] . '/icons/forum.svg" />
-											<span>Message</span>
-										</a>
-										</li>';
-			echo '
-								</li><!-- .profile -->';
-		}
-
-		// Any custom fields for standard placement?
-		if (!empty($message['custom_fields']['standard']))
-			foreach ($message['custom_fields']['standard'] as $custom)
-				echo '
-								<li class="custom ', $custom['col_name'], '">', $custom['title'], ': ', $custom['value'], '</li>';
-	}
-	// Are we showing the warning status?
-	// Don't show these things for guests.
-	if (!$message['member']['is_guest'] && $message['member']['can_see_warning'])
-		echo '
-								<li class="warning">
-									', $context['can_issue_warning'] ? '<a href="' . $scripturl . '?action=profile;area=issuewarning;u=' . $message['member']['id'] . '">' : '', '<span class="main_icons warning_', $message['member']['warning_status'], '"></span> ', $context['can_issue_warning'] ? '</a>' : '', '<span class="warn_', $message['member']['warning_status'], '">', $txt['warn_' . $message['member']['warning_status']], '</span>
-								</li>';
-
-	// Are there any custom fields to show at the bottom of the poster info?
-	if (!empty($message['custom_fields']['bottom_poster']))
-		foreach ($message['custom_fields']['bottom_poster'] as $custom)
-			echo '
-								<li class="custom ', $custom['col_name'], '">', $custom['value'], '</li>';
-
-	// Poster info ends.
-	echo '
-							</ul>
-						</div><!-- .poster -->
+					echo'
 						<div class="postarea">
 							<div class="keyinfo">';
 
 	// Some people don't want subject... The div is still required or quick edit breaks.
 	echo '
+								<div class="poster_avatar">
+									', $message['member']['avatar']['image'], '
+									', $message['member']['link'],'</a>
+								</div>
 								<div id="subject_', $message['id'], '" class="subject_title', (empty($modSettings['subject_toggle']) ? ' subject_hidden' : ''), '">
 									', $message['link'], '
 								</div>';
 
 	echo '
-								', !empty($message['counter']) ? '<span class="page_number floatright">#' . $message['counter'] . '</span>' : '', '
 								<div class="postinfo">
 									<span class="messageicon" ', ($message['icon_url'] === $settings['images_url'] . '/post/xx.png' && !$message['can_modify']) ? ' style="position: absolute; z-index: -1;"' : '', '>
 										<img src="', $message['icon_url'] . '" alt=""', $message['can_modify'] ? ' id="msg_icon_' . $message['id'] . '"' : '', '>

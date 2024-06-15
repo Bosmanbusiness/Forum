@@ -466,12 +466,13 @@ a img {
 
 /* the page navigation area */
 .pagesection {
-	padding: 2px 0;
 	overflow: hidden;
 	clear: both;
 	display: flex;
+	gap: 1rem;
 	align-items: center;
 	justify-content: space-between;
+	margin: 1rem 0;
 }
 .pagesection .pagelinks {
 	display: flex;
@@ -480,9 +481,6 @@ a img {
 .pages::after, .jump_to::after, .code::after,
 strong[id^='child_list_']::after {
 	content: ": ";
-}
-#main_content_section .pagesection {
-	margin: 4px 0 0 0;
 }
 .pagelinks .button {
 	padding: 0 5px;
@@ -937,22 +935,21 @@ a[class^="mobile_generic_menu_"] {
 /* Styles for the standard button lists.
 ------------------------------------------------------- */
 .buttonlist, .buttonrow, .pagelinks {
-	padding: 5px 0 5px 0;
 	display: flex;
 	gap: .5rem;
-	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
 }
 .button, .quickbuttons > li > a, .inline_mod_check {
 	display: inline-block;
 	padding: .5rem 1rem;
-	color: white;
-	/* background: var(--secondary-color); */
+	color: var(--secondary-color);
+	background: var(--tertiary-color);
 	text-transform: uppercase;
 	cursor: pointer;
 	transition: .5s ease-in-out;
 	border-radius: 6px;
+	border: 1px solid var(--secondary-color);
 	vertical-align: middle;
 }
 html[lang="el-GR"] .button,
@@ -2160,6 +2157,7 @@ dl {
 #basicinfo img.avatar, dl.settings img.avatar {
 	display: block;
 	max-width: 160px;
+	aspect-ratio: 1;
 	height: auto !important;
 }
 #basicinfo ul {
@@ -2761,6 +2759,10 @@ tr.windowbg:hover {
 	background: white;
 }
 
+#forumposts {
+	margin-top: 1rem;
+}
+
 /* Special treatment for #forumposts area */
 #forumposts .windowbg, #forumposts .approvebg, #forumposts .approvebg2, #pmFolder .windowbg {
 	overflow: visible;
@@ -2894,32 +2896,15 @@ h3 .collapse {
 	border-left: 1px solid var(--tertiary-color);
 	border-right: 1px solid var(--tertiary-color);
 }
-.info {
-	overflow: hidden;
-	overflow-wrap: break-word;
-	padding: 5px 5px 5px 0;
-	flex-grow: 1;
+.boards_list {
+	display: inline-flex;
+	font-weight: 400;
 }
-.info .subject {
-	font-weight: 600;
-	font-size: 1.1em;
+
+.subject:hover {
 	color: var(--primary-color);
 }
-.board_stats {
-	width: 15%;
-	font-size: 0.9em;
-	margin: 0 0 0 auto;
-	text-align: center;
-}
-.lastpost {
-	width: 30%;
-	font-size: 0.9em;
-	padding-top: 3px;
-}
-.board_icon, .info, .board_stats, .lastpost {
-	display: inline-block;
-	align-self: center;
-}
+
 .up_contain {
 	overflow: hidden;
 	display: flex;
@@ -3218,8 +3203,6 @@ img.avatar {
 .postarea {
 	width: 100%;
 	padding: 1rem;
-	border: 1px solid var(--tertiary-color);
-	border-radius: 6px;
 	position: relative;
 }
 .postarea div.flow_hidden {
@@ -3234,14 +3217,24 @@ img.avatar {
 .messageicon img, #iconList img {
 	vertical-align: middle;
 }
-.keyinfo .postinfo {
-	padding: 1px 0 5px 0;
+
+.avatar_wrapper>.avatar {
+	width: 24px !important;
+}
+
+#new {
+	display: none;
+}
+.keyinfo {
+	display: flex;
+	align-items: center;
+	margin-bottom: 1rem;
+}
+.postinfo {
 	line-height: 1.5em;
 	font-size: 0.9em;
 	font-weight: bold;
 	display: flex;
-	flex-flow: row wrap;
-	justify-content: space-between;
 	align-items: center;
 }
 .keyinfo .postinfo::after, .under_message::after {
@@ -3250,13 +3243,13 @@ img.avatar {
 	display: block;
 }
 .keyinfo .postinfo a, .keyinfo .postinfo a strong {
-	color: #ad6825;
+	color: var(--secondary-color)
 }
 .keyinfo .postinfo .spacer {
 	flex: 1 1 auto;
 }
 .keyinfo .postinfo .modified {
-	color: #333;
+	color: var(--secondary-color);
 	font-weight: normal;
 	font-style: italic;
 	padding: 2px 4px 0 4px;
@@ -3325,10 +3318,13 @@ img.smiley {
 /* Next and previous topic links */
 .nextlinks {
 	text-transform: capitalize;
+	margin-bottom: 1rem;
+	display: block;
 }
 /* Styles for the quick reply area. */
 #quickreply {
 	clear: both;
+	margin-top: 1rem;
 }
 #quickreply_options .roundframe {
 	margin: 0;
@@ -3422,6 +3418,7 @@ ul.post_options li {
 	flex-wrap: wrap;
 	justify-content: space-between;
 	width: 100%;
+	align-items: center;
 }
 #post_confirm_buttons, #shortcuts {
 	padding: 12px 0;
@@ -3745,7 +3742,7 @@ h3.profile_hd::before,
 	clear: both;
 }
 #display_head p {
-	color: var(--tertiary-color);
+	color: var(--secondary-color);
 }
 #display_head span {
 	margin: -4px 0 0 0;
@@ -4030,6 +4027,12 @@ img.theme_thumbnail {
 	border: none;
 }
 
+.divide > * + * {
+	border-top: 1px solid var(--tertiary-color);
+	padding: 1rem 0;
+	border-bottom: 1px solid var(--tertiary-color);
+}
+
 .btn_primary {
 	color: white;
 	font-size: 16px;
@@ -4084,23 +4087,14 @@ img.theme_thumbnail {
 	background: var(--tertiary-color);
 }
 
-.avatar_wrapper>.avatar {
-	width: 24px;
-	aspect-ratio: 1;
-	border-radius: 50%;
-	background: white;
-	border: 1px solid var(--secondary-color);
-	object-fit: cover;
-}
-
 .avatar {
 	border: 1px solid var(--secondary-color);
 	border-radius: 50%;
 	object-fit: cover;
 	margin: 0 auto;
+	aspect-ratio: 1 !important;
+	background-size: cover;
 }
-
-
 
 .avatar_wrapper {
 	display: flex;
@@ -4109,11 +4103,18 @@ img.theme_thumbnail {
 }
 
 .poster_avatar {
-	display: grid;
-	place-content: center;
-	text-align: center;
+	display: flex;
+	align-items: center;
+	gap: .5rem;
 }
 
+.messageicon {
+	display: none;
+}
+
+.poster_avatar> .avatar{
+	width: 32px;
+}
 nav {
 	display: flex;
 	justify-content: space-between;
