@@ -15,7 +15,7 @@
  */
 function template_generic_menu_dropdown_above()
 {
-	global $context, $txt, $settings;
+	global $context, $txt, $settings, $scripturl;
 
 	// Which menu are we rendering?
 	$context['cur_menu_id'] = isset($context['cur_menu_id']) ? $context['cur_menu_id'] + 1 : 1;
@@ -75,7 +75,7 @@ function template_generic_menu_dropdown_below()
  */
 function template_generic_menu(&$menu_context)
 {
-	global $context, $user_info;
+	global $context, $user_info, $scripturl;
 
 	echo '
 				<div class="generic_menu">
