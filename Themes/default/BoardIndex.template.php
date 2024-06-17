@@ -310,7 +310,52 @@ function template_info_center()
  */
 function template_ic_block_recent()
 {
-	global $context, $scripturl, $settings, $txt;
+	global $context, $settings, $scripturl, $txt, $modSettings;
+
+    // Define posts per page and get current page
+    $postsPerPage = 20; // Adjust this number as needed
+    $currentPage = isset($_GET['recpage']) ? max(1, (int)$_GET['recpage']) : 1;
+
+    // Calculate total pages
+    $totalPosts = count($context['latest_posts']);
+    $totalPages = ceil($totalPosts / $postsPerPage);
+
+    // Calculate which posts to display
+    $startPost = ($currentPage - 1) * $postsPerPage;
+    $endPost = min($startPost + $postsPerPage, $totalPosts);
+		echo'
+		<div id="recent_posts_content">';
+
+    // Display pagination
+
+    // // Display the posts
+    // for ($i = $startPost; $i < $endPost; $i++) {
+    //     if (!isset($context['latest_posts'][$i])) {
+    //         continue;
+    //     }
+    //     $post = $context['latest_posts'][$i];
+    //     echo '
+    //     <div class="smalltext recent_posts">
+    //         <span class="recent_post_icon">', $post['icon'], '</span>
+    //         <strong><a href="', $post['href'], '">', $post['subject'], '</a></strong> ', $txt['by'], ' ', $post['poster']['link'], '
+    //         <span class="smalltext">', $post['time'], '</span>
+    //         <br>', $post['preview'], '
+    //     </div>';
+    // }
+
+    // echo '
+    // </div>';
+
+    // // Display pagination again at the bottom
+    // echo '<div class="pagination">';
+    // for ($i = 1; $i <= $totalPages; $i++) {
+    //     if ($i == $currentPage) {
+    //         echo "<strong>$i</strong> ";
+    //     } else {
+    //         echo '<a href="' . $scripturl . '?recpage=' . $i . '">' . $i . '</a> ';
+    //     }
+    // }
+    // echo '</div>';
 
 	// This is the "Recent Posts" bar.
 	echo '
@@ -320,18 +365,7 @@ function template_ic_block_recent()
 				</h4>
 			</div>
 			<div id="recent_posts_content">';
-
-	// Only show one post.
-	if ($settings['number_recent_posts'] == 1)
-	{
-		// latest_post has link, href, time, subject, short_subject (shortened with...), and topic. (its id.)
-		echo '
-				<p id="infocenter_onepost" class="inline">
-					<a href="', $scripturl, '?action=recent">', $txt['recent_view'], '</a> ', sprintf($txt['is_recent_updated'], '&quot;' . $context['latest_post']['link'] . '&quot;'), ' (', $context['latest_post']['time'], ')<br>
-				</p>';
-	}
-	// Show lots of posts.
-	elseif (!empty($context['latest_posts']))
+	if (!empty($context['latest_posts']))
 	{
 		echo'
 			<ul class="recent_posts_list divide">';
@@ -350,13 +384,34 @@ function template_ic_block_recent()
 		// 	</div>
 		// 	', $post['time'], '
 		// </li>';
-		foreach ($context['latest_posts'] as $post)
+		for ($i = $startPost; $i < $endPost; $i++) {
+			if (!isset($context['latest_posts'][$i])) {
+					continue;
+			}
+			$post = $context['latest_posts'][$i];
 			echo '
-				<li class="recent_post_item">
-					<p style="font-size: 1rem; display:block; text-align:center;">', $post['link'], '</p>
-				</li>';
+			<li class="recent_post_item">
+				<p style="font-size: 1rem; display:block; text-align:center;">', $post['link'], '</p>
+			</li>';
+		}
 		echo '
-				</ul>';
+				</ul>
+				
+				<div class="pagination">';
+				if ($currentPage > 1) {
+						$prevPage = $currentPage - 1;
+						$output .= '<a href="' . $scripturl . '?recpage=' . $prevPage . '">Previous</a> ';
+				} else {
+						$output .= '<span class="disabled">Previous</span> ';
+				}
+				for ($i = 1; $i <= $totalPages; $i++) {
+						if ($i == $currentPage) {
+								echo '<strong class="current_page">' . $i . '</strong> ';
+						} else {
+								echo '<a href="' . $scripturl . '?recpage=' . $i . '">' . $i . '</a> ';
+						}
+				}
+				echo '</div>';
 	}
 	echo '
 			</div><!-- #recent_posts_content -->';

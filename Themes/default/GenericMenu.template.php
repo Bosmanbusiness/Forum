@@ -75,7 +75,7 @@ function template_generic_menu_dropdown_below()
  */
 function template_generic_menu(&$menu_context)
 {
-	global $context;
+	global $context, $user_info;
 
 	echo '
 				<div class="generic_menu">
@@ -134,17 +134,20 @@ function template_generic_menu(&$menu_context)
 							</ul>
 						</li>';
 	}
+	if ($user_info['is_admin'] && $context['current_action'] != 'admin') {
+			echo '
+			<li>
+				<a href="', $scripturl, '?action=admin;','">Admin</a>
+			</li>';
 
+	}
+	if ($user_info['is_mod'] || $user_info['is_admin'] && $context['current_action'] != 'moderate') {
+		echo '
+			<li>
+				<a href="', $scripturl, '?action=moderate;','">Moderate</a>
+			</li>';
+	}
 	echo '
-						<li>
-							<a href="', $scripturl, '?action=admin;','">Admin</a>
-						</li>
-						<li>
-							<a href="', $scripturl, '?action=moderate;','">Moderate</a>
-						</li>
-						<li>
-							<a href="', $scripturl, '?action=mlist;','">Members</a>
-						</li>
 						<li>
 							<a href="', $scripturl, '?action=logout;', $context['session_var'], '=', $context['session_id'], '">Log Out</a>
 							<script>document.getElementById("nojs_logout").style.display = "none";</script>

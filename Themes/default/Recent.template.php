@@ -16,7 +16,8 @@
 function template_recent()
 {
 	global $context, $txt;
-
+	// At the top of your file, define the number of posts per page
+	
 	echo '
 	<div id="recent" class="main_section">
 		<div id="display_head" class="information">

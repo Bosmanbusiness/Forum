@@ -2157,6 +2157,7 @@ dl {
 #basicinfo img.avatar, dl.settings img.avatar {
 	display: block;
 	max-width: 160px;
+	width: 65px !important;
 	aspect-ratio: 1;
 	height: auto !important;
 }
@@ -4199,8 +4200,27 @@ form.login {
 	gap: 1rem;
 }
 
+.pagination{
+	display: flex;
+	justify-content: center;
+	gap: .5rem;
+}
+
+#modcenter {
+	display: grid !important;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1rem;
+}
+
+.half_content {
+	width: 100%;
+}
+
 
 @media screen and (max-width: 720px) {
+	#modcenter {
+		grid-template-columns: repeat(1, 1fr);
+	}
 	.recent_posts_list {
 		display: grid;
 		grid-template-columns: auto;
