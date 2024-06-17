@@ -53,7 +53,7 @@ function template_newsfader()
  */
 function template_main()
 {
-	global $context, $txt, $scripturl;
+	global $context, $txt, $scripturl, $modSettings;
 
 	echo '
 	<div id="boardindex_table" class="boardindex_table divide window">
@@ -134,7 +134,7 @@ function template_bi_redirect_icon($board)
  */
 function template_bi_board_info($board)
 {
-	global $context, $scripturl, $txt;
+	global $context, $scripturl, $txt, $modSettings;
 
 	echo '
 		<a class="subject mobile_subject" href="', $board['href'], '" id="b', $board['id'], '">
@@ -205,7 +205,7 @@ function template_bi_board_lastpost($board)
  */
 function template_bi_board_children($board)
 {
-	global $txt, $scripturl, $context;
+	global $txt, $scripturl, $context, $modSettings;
 
 	// Show the "Child Boards: ". (there's a link_children but we're going to bold the new ones...)
 	if (!empty($board['children']))
@@ -248,7 +248,7 @@ function template_boardindex_outer_below()
  */
 function template_info_center()
 {
-	global $context, $options, $txt;
+	global $context, $options, $txt, $modSettings;
 
 	if (empty($context['info_center']))
 		return;
@@ -422,7 +422,7 @@ function template_ic_block_recent()
  */
 function template_ic_block_calendar()
 {
-	global $context, $scripturl, $txt;
+	global $context, $scripturl, $txt, $modSettings;
 
 	// Show information about events, birthdays, and holidays on the calendar.
 	echo '
@@ -477,7 +477,7 @@ function template_ic_block_calendar()
  */
 function template_ic_block_stats()
 {
-	global $scripturl, $txt, $context, $settings;
+	global $scripturl, $txt, $context, $settings, $modSettings;
 
 	// Show statistical style information...
 }
