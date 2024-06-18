@@ -398,12 +398,6 @@ function template_ic_block_recent()
 				</ul>
 				
 				<div class="pagination">';
-				if ($currentPage > 1) {
-						$prevPage = $currentPage - 1;
-						$output .= '<a href="' . $scripturl . '?recpage=' . $prevPage . '">Previous</a> ';
-				} else {
-						$output .= '<span class="disabled">Previous</span> ';
-				}
 				for ($i = 1; $i <= $totalPages; $i++) {
 						if ($i == $currentPage) {
 								echo '<strong class="current_page">' . $i . '</strong> ';
