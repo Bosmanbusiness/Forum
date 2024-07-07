@@ -432,7 +432,8 @@ function ViewMemberlist()
 
 	// Get the title and sub template ready..
 	$context['page_title'] = $txt['admin_members'];
-
+	$countryCode = getCountryCode('member_ip');
+	$flagUrl = 'https://flagcdn.com/32x24/' . strtolower($countryCode) . '.png';
 	$listOptions = array(
 		'id' => 'member_list',
 		'title' => $txt['members_list'],
@@ -536,6 +537,26 @@ function ViewMemberlist()
 				'sort' => array(
 					'default' => 'member_ip',
 					'reverse' => 'member_ip DESC',
+				),
+			),
+			'country' => array(
+				'header' => array(
+					'value' => 'Country',
+				),
+				'data' => array(
+					// 'db' => 'member_ip',
+					'sprintf' => array(
+						'format' => '<img src="' . $flagUrl . '" alt="' . $countryCode . '" title="" width="32px" height="24px" />',
+						'params' => array(
+							'member_ip' => true,
+							'id_member' => false,
+							'member_name' => false,
+						),
+					),
+				),
+				'sort' => array(
+					'default' => 'id_member',
+					'reverse' => 'id_member DESC',
 				),
 			),
 			'last_active' => array(

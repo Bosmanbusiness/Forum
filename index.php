@@ -46,6 +46,7 @@ foreach (array('db_character_set', 'cachedir') as $variable)
 
 // Load the settings...
 require_once(dirname(__FILE__) . '/Settings.php');
+require_once(dirname(__FILE__) . '/geoip_functions.php');
 
 // Devs want all error messages, but others don't.
 error_reporting(!empty($db_show_debug) ? E_ALL : E_ALL & ~E_DEPRECATED);

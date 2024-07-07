@@ -398,9 +398,13 @@ function template_summary()
 	if ($context['can_see_ip'])
 	{
 		if (!empty($context['member']['ip']))
+		$countryCode = getCountryCode($context['member']['ip']);
+		$flagUrl = 'https://flagcdn.com/32x24/' . strtolower($countryCode) . '.png';
 			echo '
 				<dt>', $txt['ip'], ': </dt>
-				<dd><a href="', $scripturl, '?action=profile;area=tracking;sa=ip;searchip=', $context['member']['ip'], ';u=', $context['member']['id'], '">', $context['member']['ip'], '</a></dd>';
+				<dd><a href="', $scripturl, '?action=profile;area=tracking;sa=ip;searchip=', $context['member']['ip'], ';u=', $context['member']['id'], '">', $context['member']['ip'], '</a></dd>
+				<dt>Country: </dt>
+				<dd><img src="' . $flagUrl . '" alt="' . $countryCode . '" title="" width="32px" height="24px" /></dd>';
 
 		if (empty($modSettings['disableHostnameLookup']) && !empty($context['member']['ip']))
 			echo '

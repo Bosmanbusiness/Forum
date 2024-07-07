@@ -56,7 +56,7 @@ $language = 'english';
  *
  * @var string
  */
-$boardurl = 'http://localhost/smf';
+$boardurl = 'http://localhost/forum';
 /**
  * Email address to send emails from. (like noreply@yourdomain.com.)
  *
@@ -195,7 +195,7 @@ $cache_memcached = '';
  *
  * @var string
  */
-$cachedir = 'C:/xampp/htdocs/smf/cache';
+$cachedir = 'C:\\xampp\\htdocs\\Forum/cache';
 
 ########## Image Proxy ##########
 # This is done entirely in Settings.php to avoid loading the DB while serving the images
@@ -225,26 +225,26 @@ $image_proxy_maxsize = 5192;
  *
  * @var string
  */
-$boarddir = 'C:/xampp/htdocs/smf';
+$boarddir = 'C:\\xampp\\htdocs\\Forum';
 /**
  * Path to the Sources directory.
  *
  * @var string
  */
-$sourcedir = 'C:/xampp/htdocs/smf/Sources';
+$sourcedir = 'C:\\xampp\\htdocs\\Forum/Sources';
 /**
  * Path to the Packages directory.
  *
  * @var string
  */
-$packagesdir = 'C:/xampp/htdocs/smf/Packages';
+$packagesdir = 'C:\\xampp\\htdocs\\Forum/Packages';
 /**
  * Path to the tasks directory.
  *
  * @var string
  */
-$tasksdir = 'C:/xampp/htdocs/smf/Sources/tasks';
-$cachedir_sqlite = 'C:/xampp/htdocs/smf/cache';
+$tasksdir = 'C:\\xampp\\htdocs\\Forum/Sources/tasks';
+$cachedir_sqlite = 'C:\\xampp\\htdocs\\Forum/cache';
 
 # Make sure the paths are correct... at least try to fix them.
 if (!is_dir(realpath($boarddir)) && file_exists(dirname(__FILE__) . '/agreement.txt'))
