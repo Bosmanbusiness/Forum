@@ -117,7 +117,6 @@ function template_html_above()
 			'integrate_load_theme' hook for adding multiple files, or using
 			'integrate_pre_css_output', 'integrate_pre_javascript_output' for a single file.
 	*/
-
 	// load in any css from mods or themes so they can overwrite if wanted
 	template_css();
 
@@ -125,6 +124,7 @@ function template_html_above()
 	template_javascript();
 
 	echo '
+	<script src="', $settings['theme_url'] . '/scripts/url_cleaner.js"></script>
 	<title>', $context['page_title_html_safe'], '</title>
 	<link rel="shortcut icon" href="', $settings['images_url'] . '/logo/favicon.svg" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">';
